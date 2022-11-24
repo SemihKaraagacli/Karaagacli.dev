@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@100;200;300;400;500;600;700;800;900&family=Fira+Sans:wght@100;200;300;400;500;600;700;800;900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,700&family=Ubuntu:wght@300;400;500;700&display=swap');
+
+body {
+    /* font-family: 'Barlow', sans-serif; */
+    /* font-family: 'Fira Sans', sans-serif; */
+    /* font-family: 'Inter', sans-serif; */
+    /* font-family: 'Lora', serif; */
+    /* font-family: 'Ubuntu', sans-serif; */
+    /* background-color: blue; */
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.c {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 13%;
+
+}
+
+.login-box {
+    position: absolute;
+    width: 50%;
+    padding: 15px;
+}
+
+.login-cimetry {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-head {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.login-icon {
+    font-size: 40px;
+}
+
+.login-icon-name {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.formm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 45%;
+    font-family: 'Lora', serif;
+}
+
+.formm input {
+    margin-bottom: 15px;
+}
+
+.formm button {
+    display: block;
+    background-color: rgb(32, 38, 43);
+    border-radius: 10px;
+    padding: 3px 30px;
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+}
+
+
+/* HOME */
+.home {
+    padding: 0px 70px;
+}
+
+.home-img {
+    position: fixed;
+    z-index: -1;
+}
+
+.home-navbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Lora', serif;
+}
+
+.navi {
+    background-color: #c7c3cf5d;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 15px;
+    margin-top: 15px;
+
+}
+
+.navii {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.navi-link {
+    padding: 10px 30px;
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+}
+
+.navi-link:hover {
+    color: red;
+}
+
+.exit {
+    font-size: 25px;
+    font-weight: 600;
+    color: white;
+}
+
+.exit:hover {
+    color: red;
+}
+
+.home-tables {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 80px;
+    /* padding: 0px 40px; */
+
+
+}
+
+.remove {
+    display: block;
+    padding: 5px 15px;
+    width: 50%;
+    font: 23px;
+    font-weight: 500;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    background-color: rgb(235, 51, 51);
+}
+
+.remove:hover {
+    color: white;
+}
+
+.update {
+    display: block;
+    padding: 5px 15px;
+    width: 50%;
+    font: 23px;
+    font-weight: 500;
+    text-decoration: none;
+    color: white;
+    border-radius: 10px;
+    background-color: orange;
+}
+
+.update:hover {
+    color: white;
+}
+
+.create {
+    display: block;
+    padding: 5px 15px;
+    width: 10%;
+    font: 23px;
+    font-weight: 500;
+    text-decoration: none;
+    text-align: center;
+    color: black;
+    border-radius: 10px;
+    background-color: rgb(254, 254, 255);
+}
+
+.create:hover {
+    color: black;
+}
+
+.head-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    /* margin-top: 35px; */
+    padding: 30px 25px;
+}
+
+.head-name,
+.head-icon,
+.head-icon-name {
+    font-size: 25px;
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+}
+
+.head-icon {
+    margin-top: 5px;
+}

@@ -4,9 +4,11 @@ import {
   faRightFromBracket,
   faAnglesRight,
 } from "@fortawesome/free-solid-svg-icons";
-import { Nav } from "react-bootstrap";
+import { Form, Nav } from "react-bootstrap";
 import admin from "~/styles/admin.css";
 import { redirect } from "@remix-run/node";
+import { db } from "~/utils/db.server";
+import { createPost } from "~/models/post.server";
 export function links() {
   return [{ rel: "stylesheet", href: admin }];
 }
@@ -17,6 +19,10 @@ export const meta: MetaFunction = () => ({
 });
 
 export const action: ActionFunction = async ({ request }) => {
+  const formData = await request.formData();
+  const welcomeWrite = formData.get("welcomeWrite");
+
+  await createPost({ welcomeWrite });
   return redirect("/admin/main");
 };
 
@@ -71,25 +77,25 @@ export default function Index() {
             <FontAwesomeIcon className="head-icon" icon={faAnglesRight} />
           </a>
         </div>
-        <div className="inputs">
-          <form
-            className="flex flex-col items-center px-32"
-            method="post"
-            action=""
+
+        <Form
+          className="flex flex-col items-center px-32"
+          method="post"
+          // action=""
+        >
+          <textarea
+            itemType="text"
+            name="welcomeWrite"
+            className="form-control"
+            placeholder="Welcome Write Add"
+          ></textarea>
+          <button
+            itemType="summit"
+            className="block bg-indigo-800 px-4 py-1 mt-4 rounded-md"
           >
-            <textarea
-              name="welcomeWrite"
-              className="form-control"
-              placeholder="Welcome Write Add"
-            ></textarea>
-            <button
-              itemType="summit"
-              className="block bg-indigo-800 px-4 py-1 mt-4 rounded-md"
-            >
-              Save
-            </button>
-          </form>
-        </div>
+            Save
+          </button>
+        </Form>
       </div>
     </>
   );

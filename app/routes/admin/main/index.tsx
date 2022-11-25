@@ -79,7 +79,7 @@ export default function Index() {
               </tr>
             </thead>
             <tbody className="text-center">
-              {data.mains.map((main) => (
+              {data.mains..map((main) => (
                 <tr>
                   <td key={main.id}>{main.id}</td>
                   <td key={main.id}>{main.welcomeWrite}</td>
@@ -92,7 +92,10 @@ export default function Index() {
                   </td>
                   <td>
                     <div className="flex flex-col items-center">
-                      <a className="update" href="/admin/main/update">
+                      <a
+                        className="update"
+                        href={`/admin/main/update/${main.id}`}
+                      >
                         Update
                       </a>
                     </div>

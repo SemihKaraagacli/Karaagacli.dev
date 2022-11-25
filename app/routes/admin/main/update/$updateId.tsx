@@ -1,4 +1,4 @@
-import { json, MetaFunction } from "@remix-run/node";
+import { ActionFunction, json, MetaFunction, redirect } from "@remix-run/node";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faRightFromBracket,
@@ -6,6 +6,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Nav } from "react-bootstrap";
 import admin from "~/styles/admin.css";
+import { useLoaderData, useParams } from "@remix-run/react";
+import type { LoaderFunction } from "@remix-run/node";
+import { findPost, updatePost } from "~/models/post.server";
+import type { main } from "@prisma/client";
+import { Form } from "@remix-run/react";
 
 export function links() {
   return [{ rel: "stylesheet", href: admin }];
@@ -16,7 +21,29 @@ export const meta: MetaFunction = () => ({
   viewport: "width=device-width,initial-scale=1",
 });
 
+type loaderData = { main: main };
+
+export const loader: LoaderFunction = async ({ params }) => {
+  const id = params.updateId;
+  const post = await findPost(parseInt(id!));
+  if (!post) {
+    return redirect("/admin/main");
+  }
+  const data: loaderData = {
+    main: post,
+  };
+  return json(data);
+};
+
+export async function action({ request, params }) {
+  const id = params.updateId;
+  const body = await request.formData();
+  await updatePost(parseInt(id!), body.get("welcomeWrite"));
+  return redirect(`/admin/main`);
+}
+
 export default function Update() {
+  const data = useLoaderData<loaderData>();
   return (
     <>
       <img className="home-img" src={require("~/images/a.jpg")} alt="" />
@@ -61,26 +88,27 @@ export default function Update() {
           <div className="head-name">Update</div>
           <a
             className="flex flex-row items-center gap-1 no-underline"
-            href="../main"
+            href="/admin/main"
           >
             <div className="head-icon-name">Geri</div>
             <FontAwesomeIcon className="head-icon" icon={faAnglesRight} />
           </a>
         </div>
         <div className="inputs">
-          <form className="flex flex-col items-center px-32" action="">
+          <Form className="flex flex-col items-center px-32" method="post">
             <textarea
-              name=""
+              name="welcomeWrite"
               className="form-control"
               placeholder="Welcome Write Add"
+              defaultValue={data.main.welcomeWrite!}
             ></textarea>
             <button
-              itemType="summit"
+              type="submit"
               className="block bg-indigo-800 px-4 py-1 mt-4 rounded-md"
             >
-              Save
+              Save '{data.main.id}'
             </button>
-          </form>
+          </Form>
         </div>
       </div>
     </>

@@ -1,7 +1,6 @@
 import { Button, Nav, Row, Container, Col } from "react-bootstrap";
 import { MetaFunction } from "@remix-run/node";
 import { Scripts } from "@remix-run/react";
-import bg from "../styles/style.css";
 
 export function links() {
   return [{ rel: "stylesheet", href: bg }];

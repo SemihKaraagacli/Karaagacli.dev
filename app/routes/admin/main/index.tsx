@@ -79,28 +79,26 @@ export default function Index() {
               </tr>
             </thead>
             <tbody className="text-center">
-              <tr>
-                {data.mains.map((main) => (
+              {data.mains.map((main) => (
+                <tr>
                   <td key={main.id}>{main.id}</td>
-                ))}
-                {data.mains.map((main) => (
                   <td key={main.id}>{main.welcomeWrite}</td>
-                ))}
-                <td>
-                  <div className="flex flex-col items-center">
-                    <a className="remove" href="#">
-                      Remove
-                    </a>
-                  </div>
-                </td>
-                <td>
-                  <div className="flex flex-col items-center">
-                    <a className="update" href="/admin/main/update">
-                      Update
-                    </a>
-                  </div>
-                </td>
-              </tr>
+                  <td>
+                    <div className="flex flex-col items-center">
+                      <a className="remove" href="#">
+                        Remove
+                      </a>
+                    </div>
+                  </td>
+                  <td>
+                    <div className="flex flex-col items-center">
+                      <a className="update" href="/admin/main/update">
+                        Update
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </Table>
         </div>

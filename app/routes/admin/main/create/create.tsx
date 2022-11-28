@@ -71,7 +71,7 @@ export default function Index() {
           <div className="head-name">Create</div>
           <a
             className="flex flex-row items-center gap-1 no-underline"
-            href="../main"
+            href="../"
           >
             <div className="head-icon-name">Geri</div>
             <FontAwesomeIcon className="head-icon" icon={faAnglesRight} />

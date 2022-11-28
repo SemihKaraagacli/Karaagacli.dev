@@ -1,4 +1,11 @@
-import { ActionFunction, MetaFunction } from "@remix-run/node";
+import {
+  ActionFunction,
+  MetaFunction,
+  unstable_composeUploadHandlers,
+  unstable_createFileUploadHandler,
+  unstable_createMemoryUploadHandler,
+  unstable_parseMultipartFormData,
+} from "@remix-run/node";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faRightFromBracket,
@@ -19,13 +26,38 @@ export const meta: MetaFunction = () => ({
 });
 
 export const action: ActionFunction = async ({ request }) => {
-  const formData = await request.formData();
-  const aboutData = formData.get(
-    "aboutWrite,profilImageName,instagram,twitter,github,linkedin,google"
+  const uploadHandler = unstable_composeUploadHandlers(
+    unstable_createFileUploadHandler({
+      maxPartSize: 5_000_000,
+      file: ({ filename }) => filename,
+    }),
+    // parse everything else into memory
+    unstable_createMemoryUploadHandler()
   );
+  const formData = await unstable_parseMultipartFormData(
+    request,
+    uploadHandler
+  );
+  console.log(formData);
+  // const formData1 = await request.formData();
+  const aboutWrite = formData.get("aboutWrite");
+  const profilImageName = formData.get("profilImageName");
+  const instagram = formData.get("instagram");
+  const twitter = formData.get("twitter");
+  const github = formData.get("github");
+  const linkedin = formData.get("linkedin");
+  const google = formData.get("google");
 
-  await aboutCreatePost({ aboutData });
-  return redirect("/admin/main");
+  await aboutCreatePost({
+    aboutWrite,
+    profilImageName,
+    instagram,
+    twitter,
+    github,
+    linkedin,
+    google,
+  });
+  return redirect("/admin/about");
 };
 
 export default function Index() {
@@ -73,7 +105,7 @@ export default function Index() {
           <div className="head-name">Create</div>
           <a
             className="flex flex-row items-center gap-1 no-underline"
-            href="../main"
+            href="../"
           >
             <div className="head-icon-name">Geri</div>
             <FontAwesomeIcon className="head-icon" icon={faAnglesRight} />
@@ -84,16 +116,52 @@ export default function Index() {
           className="flex flex-col items-center px-32"
           method="post"
           // action=""
+          encType="multipart/form-data"
         >
           <textarea
             itemType="text"
-            name="welcomeWrite"
-            className="form-control"
-            placeholder="Welcome Write Add"
+            name="aboutWrite"
+            className="form-control mb-4"
+            placeholder="About Write Add"
           ></textarea>
+          <input
+            type="file"
+            name="profilImageName"
+            className="form-control mb-4"
+          />
+          <input
+            type="text"
+            name="instagram"
+            placeholder="İnstagram"
+            className="form-control mb-4"
+          />
+          <input
+            type="text"
+            name="twitter"
+            placeholder="Twitter"
+            className="form-control mb-4"
+          />
+          <input
+            type="text"
+            name="github"
+            placeholder="Github"
+            className="form-control mb-4"
+          />
+          <input
+            type="text"
+            name="linkedin"
+            placeholder="Linkedin"
+            className="form-control mb-4"
+          />
+          <input
+            type="text"
+            name="google"
+            placeholder="Google"
+            className="form-control"
+          />
           <button
-            itemType="summit"
-            className="block bg-indigo-800 px-4 py-1 mt-4 rounded-md"
+            itemType="submit"
+            className="block bg-indigo-800 px-4 py-1 mt-4 rounded-md mb-7"
           >
             Save
           </button>

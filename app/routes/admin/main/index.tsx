@@ -25,7 +25,6 @@ export const loader: LoaderFunction = async () => {
   return json(data);
 };
 
-
 export default function Index() {
   const data = useLoaderData<loaderData>();
   return (
@@ -79,33 +78,39 @@ export default function Index() {
               </tr>
             </thead>
             <tbody className="text-center">
-              {data.mains.sort((a, b)=> a.id - b.id).map((main) => (
-                <tr>
-                  <td key={main.id}>{main.id}</td>
-                  <td key={main.id}>{main.welcomeWrite}</td>
-                  <td>
-                    <div className="flex flex-col items-center">
-                      <a className="remove" href={`/admin/main/delete/${main.id}`}>
-                        Remove
-                      </a>
-                    </div>
-                  </td>
-                  <td>
-                    <div className="flex flex-col items-center">
-                      <a
-                        className="update"
-                        href={`/admin/main/update/${main.id}`}
-                      >
-                        Update
-                      </a>
-                    </div>
-                  </td>
-                </tr>
-              )).reverse()}
+              {data.mains
+                .sort((a, b) => a.id - b.id)
+                .map((main) => (
+                  <tr>
+                    <td key={main.id}>{main.id}</td>
+                    <td key={main.id}>{main.welcomeWrite}</td>
+                    <td>
+                      <div className="flex flex-col items-center">
+                        <a
+                          className="remove"
+                          href={`/admin/main/delete/${main.id}`}
+                        >
+                          Remove
+                        </a>
+                      </div>
+                    </td>
+                    <td>
+                      <div className="flex flex-col items-center">
+                        <a
+                          className="update"
+                          href={`/admin/main/update/${main.id}`}
+                        >
+                          Update
+                        </a>
+                      </div>
+                    </td>
+                  </tr>
+                ))
+                .reverse()}
             </tbody>
           </Table>
         </div>
-        <a className="create" href="/admin/main/create">
+        <a className="create" href="/admin/main/create/create">
           Create
         </a>
       </div>

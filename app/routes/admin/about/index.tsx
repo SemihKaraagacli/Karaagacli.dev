@@ -116,7 +116,7 @@ export default function Index() {
             </tbody>
           </Table>
         </div>
-        <a className="create" href="#">
+        <a className="create" href="/admin/about/create/create">
           Create
         </a>
       </div>

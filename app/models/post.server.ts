@@ -1,9 +1,10 @@
-import { main } from "@prisma/client";
 import { db } from "~/utils/db.server";
 
-export async function getMains() {
-  return db.main.findFirst();
-}
+// export async function getMains() {
+//   return db.main.findFirst();
+// }
+
+// ADMİN MAİN
 
 export async function createPost(main: any) {
   return db.main.create({ data: main });
@@ -19,4 +20,11 @@ export async function updatePost(id: number, welcomeWrite: string) {
 
 export async function deletePost(id:number) {
   return await db.main.delete({where:{id}})
+}
+
+
+// ADMİN ABOUT
+
+export async function aboutCreatePost(about: any) {
+  return db.about.create({ data: about });
 }

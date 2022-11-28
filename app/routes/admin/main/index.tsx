@@ -3,7 +3,6 @@ import { json, LoaderFunction, MetaFunction } from "@remix-run/node";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import admin from "~/styles/admin.css";
-import { getMains } from "~/models/post.server";
 import { useLoaderData } from "@remix-run/react";
 import type { main } from "@prisma/client";
 import { db } from "~/utils/db.server";
@@ -25,6 +24,7 @@ export const loader: LoaderFunction = async () => {
   };
   return json(data);
 };
+
 
 export default function Index() {
   const data = useLoaderData<loaderData>();
@@ -79,13 +79,13 @@ export default function Index() {
               </tr>
             </thead>
             <tbody className="text-center">
-              {data.mains..map((main) => (
+              {data.mains.sort((a, b)=> a.id - b.id).map((main) => (
                 <tr>
                   <td key={main.id}>{main.id}</td>
                   <td key={main.id}>{main.welcomeWrite}</td>
                   <td>
                     <div className="flex flex-col items-center">
-                      <a className="remove" href="#">
+                      <a className="remove" href={`/admin/main/delete/${main.id}`}>
                         Remove
                       </a>
                     </div>
@@ -101,7 +101,7 @@ export default function Index() {
                     </div>
                   </td>
                 </tr>
-              ))}
+              )).reverse()}
             </tbody>
           </Table>
         </div>

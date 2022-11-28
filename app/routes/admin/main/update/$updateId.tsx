@@ -6,7 +6,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Nav } from "react-bootstrap";
 import admin from "~/styles/admin.css";
-import { useLoaderData, useParams } from "@remix-run/react";
+import { useLoaderData} from "@remix-run/react";
 import type { LoaderFunction } from "@remix-run/node";
 import { findPost, updatePost } from "~/models/post.server";
 import type { main } from "@prisma/client";
@@ -35,10 +35,10 @@ export const loader: LoaderFunction = async ({ params }) => {
   return json(data);
 };
 
-export async function action({ request, params }) {
+export const action: ActionFunction = async ({ request, params }) =>{
   const id = params.updateId;
   const body = await request.formData();
-  await updatePost(parseInt(id!), body.get("welcomeWrite"));
+  await updatePost(parseInt(id!), body.get("welcomeWrite")as string);
   return redirect(`/admin/main`);
 }
 

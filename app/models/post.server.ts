@@ -14,5 +14,9 @@ export async function findPost(id: number) {
 }
 
 export async function updatePost(id: number, welcomeWrite: string) {
-  return db.main.update({ where: { id }, data: { welcomeWrite } });
+  return db.main.update({ where: { id }, data: { welcomeWrite} });
+}
+
+export async function deletePost(id:number) {
+  return await db.main.delete({where:{id}})
 }

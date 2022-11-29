@@ -106,14 +106,20 @@ export default function Index() {
                     <td key={about.id}>{about.google}</td>
                     <td>
                       <div className="flex flex-col items-center ">
-                        <a className="remove" href="">
+                        <a
+                          className="remove"
+                          href={`/admin/about/delete/${about.id}`}
+                        >
                           Remove
                         </a>
                       </div>
                     </td>
                     <td>
                       <div className="flex flex-col items-center">
-                        <a className="update" href="">
+                        <a
+                          className="update"
+                          href={`/admin/about/update/${about.id}`}
+                        >
                           Update
                         </a>
                       </div>

@@ -28,3 +28,19 @@ export async function deletePost(id:number) {
 export async function aboutCreatePost(about: any) {
   return db.about.create({ data: about });
 }
+
+export async function aboutFindPost(id: number) {
+  return db.about.findFirst({ where: { id } });
+}
+
+// export async function aboutUpdatePost(id: number, aboutWrite: string, profilImageName:string, instagram:string, twitter:string, github:string, linkedin:string, google:string) {
+//   return db.about.update({ where: { id }, data: {aboutWrite, profilImageName, instagram, twitter, github, linkedin, google } });
+// }
+
+export async function aboutUpdatePost(id: number, data:string) {
+  return db.about.update({ where: { id }, data: data});
+}
+
+export async function aboutDeletePost(id:number) {
+  return await db.about.delete({where:{id}})
+}

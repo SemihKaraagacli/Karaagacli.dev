@@ -41,7 +41,6 @@ export const action: ActionFunction = async ({ request }) => {
   );
   const aboutWrite = formData.get("aboutWrite");
   const profilImageName = (formData.get("profilImageName") as any).name;
-
   const instagram = formData.get("instagram");
   const twitter = formData.get("twitter");
   const github = formData.get("github");

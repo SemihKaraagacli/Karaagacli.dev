@@ -59,34 +59,27 @@ export const action: ActionFunction = async ({ request, params }) => {
     uploadHandler
   );
   const id = params.aboutUpdateId;
-
   const aboutWrite = formData.get("aboutWrite");
-  // const profilImageName = (formData.get("profilImageName") as any).name;
-
   const instagram = formData.get("instagram");
   const twitter = formData.get("twitter");
   const github = formData.get("github");
   const linkedin = formData.get("linkedin");
   const google = formData.get("google");
 
-  const deger = { aboutWrite, instagram, twitter, github, linkedin, google };
+  const deger = {
+    aboutWrite,
+    instagram,
+    twitter,
+    github,
+    linkedin,
+    google,
+  } as any;
 
-  if (formData.get("profilImageName") != null) {
-    deger.profilImageName as string = (formData.get("profilImageName") as File).name;
+  if (formData.get("profilImageName").name != "") {
+    deger.profilImageName = (formData.get("profilImageName") as any).name;
   }
 
   await aboutUpdatePost(parseInt(id!), deger);
-
-  // await aboutUpdatePost(
-  //   parseInt(id!),
-  //   aboutWrite as string,
-  //   profilImageName,
-  //   instagram as string,
-  //   twitter as string,
-  //   github as string,
-  //   linkedin as string,
-  //   google as string
-  // );
   return redirect(`/admin/about`);
 };
 export default function Update() {

@@ -37,7 +37,7 @@ export async function aboutFindPost(id: number) {
 //   return db.about.update({ where: { id }, data: {aboutWrite, profilImageName, instagram, twitter, github, linkedin, google } });
 // }
 
-export async function aboutUpdatePost(id: number, data:string) {
+export async function aboutUpdatePost(id: number, data:any) {
   return db.about.update({ where: { id }, data: data});
 }
 

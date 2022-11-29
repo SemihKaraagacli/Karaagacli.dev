@@ -40,7 +40,6 @@ export const action: ActionFunction = async ({ request }) => {
     uploadHandler
   );
   const aboutWrite = formData.get("aboutWrite");
-  // const profilImageName = formData.get("profilImageName");
   const profilImageName = (formData.get("profilImageName") as any).name;
 
   const instagram = formData.get("instagram");

@@ -91,11 +91,13 @@ export default function Index() {
                     <td key={about.id}>{about.id}</td>
                     <td key={about.id}>{about.aboutWrite}</td>
                     <td key={about.id}>
-                      <img
-                        className="w-20 h-20"
-                        src={`/uploads/${about.profilImageName}`}
-                        alt=""
-                      />
+                      <div className="flex flex-col items-center justify-center">
+                        <img
+                          className="w-13 h-12 relative"
+                          src={`/uploads/${about.profilImageName}`}
+                          alt=""
+                        />
+                      </div>
                     </td>
                     <td key={about.id}>{about.instagram}</td>
                     <td key={about.id}>{about.twitter}</td>

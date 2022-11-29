@@ -28,6 +28,7 @@ export const meta: MetaFunction = () => ({
 export const action: ActionFunction = async ({ request }) => {
   const uploadHandler = unstable_composeUploadHandlers(
     unstable_createFileUploadHandler({
+      directory: "public/uploads",
       maxPartSize: 5_000_000,
       file: ({ filename }) => filename,
     }),
@@ -38,10 +39,10 @@ export const action: ActionFunction = async ({ request }) => {
     request,
     uploadHandler
   );
-  console.log(formData);
-  // const formData1 = await request.formData();
   const aboutWrite = formData.get("aboutWrite");
-  const profilImageName = formData.get("profilImageName");
+  // const profilImageName = formData.get("profilImageName");
+  const profilImageName = (formData.get("profilImageName") as any).name;
+
   const instagram = formData.get("instagram");
   const twitter = formData.get("twitter");
   const github = formData.get("github");

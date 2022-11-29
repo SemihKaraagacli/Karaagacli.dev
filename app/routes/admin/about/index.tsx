@@ -90,7 +90,13 @@ export default function Index() {
                   <tr>
                     <td key={about.id}>{about.id}</td>
                     <td key={about.id}>{about.aboutWrite}</td>
-                    <td key={about.id}>{about.profilImageName}</td>
+                    <td key={about.id}>
+                      <img
+                        className="w-20 h-20"
+                        src={`/uploads/${about.profilImageName}`}
+                        alt=""
+                      />
+                    </td>
                     <td key={about.id}>{about.instagram}</td>
                     <td key={about.id}>{about.twitter}</td>
                     <td key={about.id}>{about.github}</td>

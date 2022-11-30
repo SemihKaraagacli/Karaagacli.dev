@@ -11,6 +11,7 @@ import type { LoaderFunction } from "@remix-run/node";
 import { findPost, updatePost } from "~/models/post.server";
 import type { main } from "@prisma/client";
 import { Form } from "@remix-run/react";
+import background from "public/images/background.jpg";
 
 export function links() {
   return [{ rel: "stylesheet", href: admin }];
@@ -46,7 +47,8 @@ export default function Update() {
   const data = useLoaderData<loaderData>();
   return (
     <>
-      <img className="home-img" src={require("~/images/a.jpg")} alt="" />
+      <img className="home-img" src={background} alt="" />
+
       <div className="home">
         <div className="home-navbar">
           <Nav className=" navi">

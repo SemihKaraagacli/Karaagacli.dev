@@ -9,8 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { MetaFunction } from "@remix-run/node";
 import { Nav } from "react-bootstrap";
-import avatar from "~/images/avatar-images/avatar.jpg";
-import React from "react";
+import avatar from "public/images/profil-image/avatar.jpg";
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",

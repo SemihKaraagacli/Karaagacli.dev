@@ -6,7 +6,7 @@ import admin from "~/styles/admin.css";
 import { useLoaderData } from "@remix-run/react";
 import type { about } from "@prisma/client";
 import { db } from "~/utils/db.server";
-
+import background from "public/images/background.jpg";
 export function links() {
   return [{ rel: "stylesheet", href: admin }];
 }
@@ -29,7 +29,8 @@ export default function Index() {
   const data = useLoaderData<loaderData>();
   return (
     <>
-      <img className="home-img" src={require("~/images/a.jpg")} alt="" />
+      <img className="home-img" src={background} alt="" />
+
       <div className="home">
         <div className="home-navbar">
           <Nav className=" navi" activeKey="/home">
@@ -99,7 +100,7 @@ export default function Index() {
                       <div className="flex flex-col items-center justify-center">
                         <img
                           className="w-13 h-12 relative"
-                          src={`/uploads/${about.profilImageName}`}
+                          src={`/images/profil-image/${about.profilImageName}`}
                           alt=""
                         />
                       </div>

@@ -7,8 +7,8 @@ import {
 import { Form, Nav } from "react-bootstrap";
 import admin from "~/styles/admin.css";
 import { redirect } from "@remix-run/node";
-import { db } from "~/utils/db.server";
 import { createPost } from "~/models/post.server";
+import background from "public/images/background.jpg";
 export function links() {
   return [{ rel: "stylesheet", href: admin }];
 }
@@ -29,7 +29,7 @@ export const action: ActionFunction = async ({ request }) => {
 export default function Index() {
   return (
     <>
-      <img className="home-img" src={require("~/images/a.jpg")} alt="" />
+      <img className="home-img" src={background} alt="" />
       <div className="home">
         <div className="home-navbar">
           <Nav className=" navi" activeKey="/home">

@@ -3,7 +3,7 @@ import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { Nav } from "react-bootstrap";
 import { MetaFunction } from "@remix-run/node";
 
-import auto from "~/images/project-images/auto.jpg";
+import auto from "public/images/project-image/auto.jpg";
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",

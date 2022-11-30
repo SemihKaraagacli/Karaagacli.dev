@@ -20,7 +20,7 @@ import type { LoaderFunction } from "@remix-run/node";
 import { aboutFindPost, aboutUpdatePost, findPost } from "~/models/post.server";
 import type { about } from "@prisma/client";
 import { Form } from "@remix-run/react";
-
+import background from "public/images/background.jpg";
 export function links() {
   return [{ rel: "stylesheet", href: admin }];
 }
@@ -47,7 +47,7 @@ export const loader: LoaderFunction = async ({ params }) => {
 export const action: ActionFunction = async ({ request, params }) => {
   const uploadHandler = unstable_composeUploadHandlers(
     unstable_createFileUploadHandler({
-      directory: "public/uploads",
+      directory: "public/images/profil-image",
       maxPartSize: 5_000_000,
       file: ({ filename }) => filename,
     }),
@@ -86,7 +86,7 @@ export default function Update() {
   const data = useLoaderData<loaderData>();
   return (
     <>
-      <img className="home-img" src={require("~/images/a.jpg")} alt="" />
+      <img className="home-img" src={background} alt="" />
       <div className="home">
         <div className="home-navbar">
           <Nav className=" navi">

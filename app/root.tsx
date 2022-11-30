@@ -4,7 +4,6 @@ import { Links, Meta, Outlet, Scripts } from "@remix-run/react";
 import bootstrapStyles from "bootstrap/dist/css/bootstrap.min.css";
 import styles from "./styles/app.css";
 import frontStyle from "./styles/frontStyle.css";
-
 export function links() {
   return [
     { rel: "stylesheet", href: styles },

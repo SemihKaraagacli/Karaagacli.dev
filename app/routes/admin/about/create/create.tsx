@@ -15,6 +15,7 @@ import { Form, Nav } from "react-bootstrap";
 import admin from "~/styles/admin.css";
 import { redirect } from "@remix-run/node";
 import { aboutCreatePost } from "~/models/post.server";
+import background from "public/images/background.jpg";
 
 export function links() {
   return [{ rel: "stylesheet", href: admin }];
@@ -28,11 +29,10 @@ export const meta: MetaFunction = () => ({
 export const action: ActionFunction = async ({ request }) => {
   const uploadHandler = unstable_composeUploadHandlers(
     unstable_createFileUploadHandler({
-      directory: "public/uploads",
+      directory: "public/images/profil-image",
       maxPartSize: 5_000_000,
       file: ({ filename }) => filename,
     }),
-    // parse everything else into memory
     unstable_createMemoryUploadHandler()
   );
   const formData = await unstable_parseMultipartFormData(
@@ -62,7 +62,7 @@ export const action: ActionFunction = async ({ request }) => {
 export default function Index() {
   return (
     <>
-      <img className="home-img" src={require("~/images/a.jpg")} alt="" />
+      <img className="home-img" src={background} alt="" />
       <div className="home">
         <div className="home-navbar">
           <Nav className=" navi" activeKey="/home">

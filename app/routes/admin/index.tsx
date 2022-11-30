@@ -2,7 +2,7 @@ import { MetaFunction } from "@remix-run/node";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFingerprint } from "@fortawesome/free-solid-svg-icons";
 import admin from "~/styles/admin.css";
-
+import background from "public/images/background.jpg";
 export function links() {
   return [{ rel: "stylesheet", href: admin }];
 }
@@ -15,7 +15,7 @@ export const meta: MetaFunction = () => ({
 export default function Index() {
   return (
     <>
-      <img src={require("~/images/a.jpg")} alt="ima" />
+      <img className="home-img" src={background} alt="" />
       <div className="c">
         <div className="login-box">
           <div className="login-cimetry">

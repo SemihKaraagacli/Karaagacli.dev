@@ -1,11 +1,4 @@
-import {
-  ActionFunction,
-  MetaFunction,
-  unstable_composeUploadHandlers,
-  unstable_createFileUploadHandler,
-  unstable_createMemoryUploadHandler,
-  unstable_parseMultipartFormData,
-} from "@remix-run/node";
+import { ActionFunction, MetaFunction } from "@remix-run/node";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faRightFromBracket,
@@ -14,8 +7,7 @@ import {
 import { Form, Nav } from "react-bootstrap";
 import admin from "~/styles/admin.css";
 import { redirect } from "@remix-run/node";
-import { aboutCreatePost } from "~/models/post.server";
-
+import { educationCreatePost } from "~/models/post.server";
 export function links() {
   return [{ rel: "stylesheet", href: admin }];
 }
@@ -26,37 +18,14 @@ export const meta: MetaFunction = () => ({
 });
 
 export const action: ActionFunction = async ({ request }) => {
-  const uploadHandler = unstable_composeUploadHandlers(
-    unstable_createFileUploadHandler({
-      directory: "public/uploads",
-      maxPartSize: 5_000_000,
-      file: ({ filename }) => filename,
-    }),
-    // parse everything else into memory
-    unstable_createMemoryUploadHandler()
-  );
-  const formData = await unstable_parseMultipartFormData(
-    request,
-    uploadHandler
-  );
-  const aboutWrite = formData.get("aboutWrite");
-  const profilImageName = (formData.get("profilImageName") as any).name;
-  const instagram = formData.get("instagram");
-  const twitter = formData.get("twitter");
-  const github = formData.get("github");
-  const linkedin = formData.get("linkedin");
-  const google = formData.get("google");
+  const formData = await request.formData();
+  const name = formData.get("name");
+  const date = formData.get("date");
+  const department = formData.get("department");
+  const explanation = formData.get("explanation");
 
-  await aboutCreatePost({
-    aboutWrite,
-    profilImageName,
-    instagram,
-    twitter,
-    github,
-    linkedin,
-    google,
-  });
-  return redirect("/admin/about");
+  await educationCreatePost({ name, date, department, explanation });
+  return redirect("/admin/education");
 };
 
 export default function Index() {
@@ -119,50 +88,32 @@ export default function Index() {
         <Form
           className="flex flex-col items-center px-32"
           method="post"
-          // action=""
-          encType="multipart/form-data"
+          //   action=""
         >
+          <input
+            type="text"
+            name="name"
+            placeholder="Name"
+            className="form-control mb-4"
+          />
+          <input
+            type="text"
+            name="date"
+            placeholder="Date"
+            className="form-control mb-4"
+          />
+          <input
+            type="text"
+            name="department"
+            placeholder="Department"
+            className="form-control mb-4"
+          />
           <textarea
             itemType="text"
-            name="aboutWrite"
+            name="explanation"
             className="form-control mb-4"
-            placeholder="About Write Add"
+            placeholder="Epxlanation"
           ></textarea>
-          <input
-            type="file"
-            name="profilImageName"
-            className="form-control mb-4"
-          />
-          <input
-            type="text"
-            name="instagram"
-            placeholder="İnstagram"
-            className="form-control mb-4"
-          />
-          <input
-            type="text"
-            name="twitter"
-            placeholder="Twitter"
-            className="form-control mb-4"
-          />
-          <input
-            type="text"
-            name="github"
-            placeholder="Github"
-            className="form-control mb-4"
-          />
-          <input
-            type="text"
-            name="linkedin"
-            placeholder="Linkedin"
-            className="form-control mb-4"
-          />
-          <input
-            type="text"
-            name="google"
-            placeholder="Google"
-            className="form-control"
-          />
           <button
             itemType="submit"
             className="block bg-indigo-800 px-4 py-1 mt-4 rounded-md mb-7"

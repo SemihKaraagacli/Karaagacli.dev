@@ -6,7 +6,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Nav } from "react-bootstrap";
 import admin from "~/styles/admin.css";
-import { useLoaderData} from "@remix-run/react";
+import { useLoaderData } from "@remix-run/react";
 import type { LoaderFunction } from "@remix-run/node";
 import { findPost, updatePost } from "~/models/post.server";
 import type { main } from "@prisma/client";
@@ -20,7 +20,6 @@ export const meta: MetaFunction = () => ({
   title: "Home-Create",
   viewport: "width=device-width,initial-scale=1",
 });
-
 
 type loaderData = { main: main };
 
@@ -36,12 +35,12 @@ export const loader: LoaderFunction = async ({ params }) => {
   return json(data);
 };
 
-export const action: ActionFunction = async ({ request, params }) =>{
+export const action: ActionFunction = async ({ request, params }) => {
   const id = params.updateId;
   const body = await request.formData();
-  await updatePost(parseInt(id!), body.get("welcomeWrite")as string);
+  await updatePost(parseInt(id!), body.get("welcomeWrite") as string);
   return redirect(`/admin/main`);
-}
+};
 
 export default function Update() {
   const data = useLoaderData<loaderData>();
@@ -63,8 +62,13 @@ export default function Update() {
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link className="navi-link" href="/admin/resume">
-                  RESUME
+                <Nav.Link className="navi-link" href="/admin/education">
+                  EDUCATİON
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link className="navi-link" href="/admin/experiance">
+                  EXPERİANCE
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item>

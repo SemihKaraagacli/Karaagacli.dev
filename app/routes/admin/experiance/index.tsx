@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import admin from "~/styles/admin.css";
 import { useLoaderData } from "@remix-run/react";
-import type { about } from "@prisma/client";
+import type { resumeJob } from "@prisma/client";
 import { db } from "~/utils/db.server";
 
 export function links() {
@@ -16,11 +16,11 @@ export const meta: MetaFunction = () => ({
   viewport: "width=device-width,initial-scale=1",
 });
 
-type loaderData = { abouts: Array<about> };
+type loaderData = { job: Array<resumeJob> };
 
 export const loader: LoaderFunction = async () => {
   const data: loaderData = {
-    abouts: await db.about.findMany(),
+    job: await db.resumeJob.findMany(),
   };
   return json(data);
 };
@@ -77,43 +77,29 @@ export default function Index() {
             <thead className="text-center">
               <tr>
                 <th>#</th>
-                <th>AboutWrite</th>
-                <th>ProfilImageName</th>
-                <th>İnstagram</th>
-                <th>Twitter</th>
-                <th>Github</th>
-                <th>Linkedin</th>
-                <th>Google</th>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Department</th>
+                <th>Explanation</th>
                 <th>-</th>
                 <th>-</th>
               </tr>
             </thead>
             <tbody className="text-center">
-              {data.abouts
+              {data.job
                 .sort((a, b) => a.id - b.id)
-                .map((about) => (
+                .map((resumeJob) => (
                   <tr>
-                    <td key={about.id}>{about.id}</td>
-                    <td key={about.id}>{about.aboutWrite}</td>
-                    <td key={about.id}>
-                      <div className="flex flex-col items-center justify-center">
-                        <img
-                          className="w-13 h-12 relative"
-                          src={`/uploads/${about.profilImageName}`}
-                          alt=""
-                        />
-                      </div>
-                    </td>
-                    <td key={about.id}>{about.instagram}</td>
-                    <td key={about.id}>{about.twitter}</td>
-                    <td key={about.id}>{about.github}</td>
-                    <td key={about.id}>{about.linkedin}</td>
-                    <td key={about.id}>{about.google}</td>
+                    <td key={resumeJob.id}>{resumeJob.id}</td>
+                    <td key={resumeJob.id}>{resumeJob.name}</td>
+                    <td key={resumeJob.id}>{resumeJob.date}</td>
+                    <td key={resumeJob.id}>{resumeJob.department}</td>
+                    <td key={resumeJob.id}>{resumeJob.explanation}</td>
                     <td>
                       <div className="flex flex-col items-center ">
                         <a
                           className="remove"
-                          href={`/admin/about/delete/${about.id}`}
+                          href={`/admin/experiance/delete/${resumeJob.id}`}
                         >
                           Remove
                         </a>
@@ -123,7 +109,7 @@ export default function Index() {
                       <div className="flex flex-col items-center">
                         <a
                           className="update"
-                          href={`/admin/about/update/${about.id}`}
+                          href={`/admin/experiance/update/${resumeJob.id}`}
                         >
                           Update
                         </a>
@@ -135,7 +121,7 @@ export default function Index() {
             </tbody>
           </Table>
         </div>
-        <a className="create" href="/admin/about/create/create">
+        <a className="create" href="/admin/experiance/create/create">
           Create
         </a>
       </div>

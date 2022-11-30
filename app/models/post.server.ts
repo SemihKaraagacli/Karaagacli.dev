@@ -33,10 +33,6 @@ export async function aboutFindPost(id: number) {
   return db.about.findFirst({ where: { id } });
 }
 
-// export async function aboutUpdatePost(id: number, aboutWrite: string, profilImageName:string, instagram:string, twitter:string, github:string, linkedin:string, google:string) {
-//   return db.about.update({ where: { id }, data: {aboutWrite, profilImageName, instagram, twitter, github, linkedin, google } });
-// }
-
 export async function aboutUpdatePost(id: number, data:any) {
   return db.about.update({ where: { id }, data: data});
 }
@@ -44,3 +40,42 @@ export async function aboutUpdatePost(id: number, data:any) {
 export async function aboutDeletePost(id:number) {
   return await db.about.delete({where:{id}})
 }
+
+//ADMIN EDUCATION
+
+export async function educationCreatePost(education: any) {
+  return db.resumeSchool.create({ data: education });
+}
+
+export async function educationFindPost(id: number) {
+  return db.resumeSchool.findFirst({ where: { id } });
+}
+
+export async function educationUpdatePost(id: number, deger:any) {
+  return db.resumeSchool.update({ where: { id }, data: deger});
+}
+
+export async function educationDeletePost(id:number) {
+  return await db.resumeSchool.delete({where:{id}})
+}
+
+//ADMIN EXPERIANCE
+
+export async function experianceCreatePost(job: any) {
+  return db.resumeJob.create({ data: job });
+}
+
+export async function experianceFindPost(id: number) {
+  return db.resumeJob.findFirst({ where: { id } });
+}
+
+export async function experianceUpdatePost(id: number, deger:any) {
+  return db.resumeJob.update({ where: { id }, data: deger});
+}
+
+export async function experianceDeletePost(id:number) {
+  return await db.resumeJob.delete({where:{id}})
+}
+
+//ADMIN PROJECT
+

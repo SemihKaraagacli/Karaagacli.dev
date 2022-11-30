@@ -45,8 +45,13 @@ export default function Index() {
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link className="navi-link" href="/admin/resume">
-                  RESUME
+                <Nav.Link className="navi-link" href="/admin/education">
+                  EDUCATİON
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link className="navi-link" href="/admin/experiance">
+                  EXPERİANCE
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item>

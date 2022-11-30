@@ -17,8 +17,8 @@ import { Nav } from "react-bootstrap";
 import admin from "~/styles/admin.css";
 import { useLoaderData } from "@remix-run/react";
 import type { LoaderFunction } from "@remix-run/node";
-import { aboutFindPost, aboutUpdatePost, findPost } from "~/models/post.server";
-import type { about } from "@prisma/client";
+import { educationFindPost, educationUpdatePost } from "~/models/post.server";
+import type { resumeSchool } from "@prisma/client";
 import { Form } from "@remix-run/react";
 
 export function links() {
@@ -30,57 +30,37 @@ export const meta: MetaFunction = () => ({
   viewport: "width=device-width,initial-scale=1",
 });
 
-type loaderData = { about: about };
+type loaderData = { schools: resumeSchool };
 
 export const loader: LoaderFunction = async ({ params }) => {
-  const id = params.aboutUpdateId;
-  const post = await aboutFindPost(parseInt(id!));
+  const id = params.educationUpdateId;
+  const post = await educationFindPost(parseInt(id!));
   if (!post) {
-    return redirect("/admin/about");
+    return redirect("/admin/education");
   }
   const data: loaderData = {
-    about: post,
+    schools: post,
   };
   return json(data);
 };
 
 export const action: ActionFunction = async ({ request, params }) => {
-  const uploadHandler = unstable_composeUploadHandlers(
-    unstable_createFileUploadHandler({
-      directory: "public/uploads",
-      maxPartSize: 5_000_000,
-      file: ({ filename }) => filename,
-    }),
-    // parse everything else into memory
-    unstable_createMemoryUploadHandler()
-  );
-  const formData = await unstable_parseMultipartFormData(
-    request,
-    uploadHandler
-  );
-  const id = params.aboutUpdateId;
-  const aboutWrite = formData.get("aboutWrite");
-  const instagram = formData.get("instagram");
-  const twitter = formData.get("twitter");
-  const github = formData.get("github");
-  const linkedin = formData.get("linkedin");
-  const google = formData.get("google");
+  const id = params.educationUpdateId;
+  const formData = await request.formData();
+  const name = formData.get("name");
+  const date = formData.get("date");
+  const department = formData.get("department");
+  const explanation = formData.get("explanation");
 
   const deger = {
-    aboutWrite,
-    instagram,
-    twitter,
-    github,
-    linkedin,
-    google,
+    name,
+    date,
+    department,
+    explanation,
   } as any;
 
-  if (formData.get("profilImageName").name != "") {
-    deger.profilImageName = (formData.get("profilImageName") as any).name;
-  }
-
-  await aboutUpdatePost(parseInt(id!), deger);
-  return redirect(`/admin/about`);
+  await educationUpdatePost(parseInt(id!), deger);
+  return redirect(`/admin/education`);
 };
 export default function Update() {
   const data = useLoaderData<loaderData>();
@@ -133,7 +113,7 @@ export default function Update() {
           <div className="head-name">Update</div>
           <a
             className="flex flex-row items-center gap-1 no-underline"
-            href="/admin/main"
+            href="../"
           >
             <div className="head-icon-name">Geri</div>
             <FontAwesomeIcon className="head-icon" icon={faAnglesRight} />
@@ -146,54 +126,33 @@ export default function Update() {
             // action=""
             encType="multipart/form-data"
           >
+            <input
+              type="text"
+              name="name"
+              className="form-control mb-4"
+              defaultValue={data.schools.name!}
+            />
+            <input
+              type="text"
+              name="date"
+              placeholder="date"
+              className="form-control mb-4"
+              defaultValue={data.schools.date!}
+            />
+            <input
+              type="text"
+              name="department"
+              placeholder="department"
+              className="form-control mb-4"
+              defaultValue={data.schools.department!}
+            />
             <textarea
               itemType="text"
-              name="aboutWrite"
+              name="explanation"
               className="form-control mb-4"
-              defaultValue={data.about.aboutWrite!}
-              placeholder="About Write Add"
+              defaultValue={data.schools.explanation!}
+              placeholder="explanation"
             ></textarea>
-            <input
-              type="file"
-              name="profilImageName"
-              className="form-control mb-4"
-              defaultValue={data.about.profilImageName!}
-            />
-            <input
-              type="text"
-              name="instagram"
-              placeholder="İnstagram"
-              className="form-control mb-4"
-              defaultValue={data.about.instagram!}
-            />
-            <input
-              type="text"
-              name="twitter"
-              placeholder="Twitter"
-              className="form-control mb-4"
-              defaultValue={data.about.twitter!}
-            />
-            <input
-              type="text"
-              name="github"
-              placeholder="Github"
-              className="form-control mb-4"
-              defaultValue={data.about.github!}
-            />
-            <input
-              type="text"
-              name="linkedin"
-              placeholder="Linkedin"
-              className="form-control mb-4"
-              defaultValue={data.about.linkedin!}
-            />
-            <input
-              type="text"
-              name="google"
-              placeholder="Google"
-              className="form-control"
-              defaultValue={data.about.google!}
-            />
             <button
               itemType="submit"
               className="block bg-indigo-800 px-4 py-1 mt-4 rounded-md mb-7"

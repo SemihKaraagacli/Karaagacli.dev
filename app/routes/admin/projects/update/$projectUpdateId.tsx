@@ -17,8 +17,8 @@ import { Nav } from "react-bootstrap";
 import admin from "~/styles/admin.css";
 import { useLoaderData } from "@remix-run/react";
 import type { LoaderFunction } from "@remix-run/node";
-import { aboutFindPost, aboutUpdatePost } from "~/models/post.server";
-import type { about } from "@prisma/client";
+import { projectFindPost, projectUpdatePost } from "~/models/post.server";
+import type { projects } from "@prisma/client";
 import { Form } from "@remix-run/react";
 import background from "public/images/background.jpg";
 export function links() {
@@ -30,16 +30,16 @@ export const meta: MetaFunction = () => ({
   viewport: "width=device-width,initial-scale=1",
 });
 
-type loaderData = { about: about };
+type loaderData = { projects: projects };
 
 export const loader: LoaderFunction = async ({ params }) => {
-  const id = params.aboutUpdateId;
-  const post = await aboutFindPost(parseInt(id!));
+  const id = params.projectUpdateId;
+  const post = await projectFindPost(parseInt(id!));
   if (!post) {
-    return redirect("/admin/about");
+    return redirect("/admin/project");
   }
   const data: loaderData = {
-    about: post,
+    projects: post,
   };
   return json(data);
 };
@@ -47,7 +47,7 @@ export const loader: LoaderFunction = async ({ params }) => {
 export const action: ActionFunction = async ({ request, params }) => {
   const uploadHandler = unstable_composeUploadHandlers(
     unstable_createFileUploadHandler({
-      directory: "public/images/profil-image",
+      directory: "public/images/project-image",
       maxPartSize: 5_000_000,
       file: ({ filename }) => filename,
     }),
@@ -57,29 +57,23 @@ export const action: ActionFunction = async ({ request, params }) => {
     request,
     uploadHandler
   );
-  const id = params.aboutUpdateId;
-  const aboutWrite = formData.get("aboutWrite");
-  const instagram = formData.get("instagram");
-  const twitter = formData.get("twitter");
-  const github = formData.get("github");
-  const linkedin = formData.get("linkedin");
-  const google = formData.get("google");
+  const id = params.projectUpdateId;
+  const name = formData.get("name");
+  const adress = formData.get("adress");
+  const comment = formData.get("comment");
 
   const deger = {
-    aboutWrite,
-    instagram,
-    twitter,
-    github,
-    linkedin,
-    google,
+    name,
+    adress,
+    comment,
   } as any;
 
-  if (formData.get("profilImageName").name != "") {
-    deger.profilImageName = (formData.get("profilImageName") as any).name;
+  if (formData.get("projectImageName").name != "") {
+    deger.projectImageName = (formData.get("projectImageName") as any).name;
   }
 
-  await aboutUpdatePost(parseInt(id!), deger);
-  return redirect(`/admin/about`);
+  await projectUpdatePost(parseInt(id!), deger);
+  return redirect(`/admin/projects`);
 };
 export default function Update() {
   const data = useLoaderData<loaderData>();
@@ -145,54 +139,34 @@ export default function Update() {
             // action=""
             encType="multipart/form-data"
           >
-            <textarea
-              itemType="text"
-              name="aboutWrite"
+            <input
+              type="text"
+              name="name"
+              placeholder="name"
               className="form-control mb-4"
-              defaultValue={data.about.aboutWrite!}
-              placeholder="About Write Add"
-            ></textarea>
+              defaultValue={data.projects.name!}
+            />
             <input
               type="file"
-              name="profilImageName"
+              name="projectImageName"
               className="form-control mb-4"
-              defaultValue={data.about.profilImageName!}
+              defaultValue={data.projects.projectImageName!}
             />
             <input
               type="text"
-              name="instagram"
-              placeholder="İnstagram"
+              name="adress"
+              placeholder="adress"
               className="form-control mb-4"
-              defaultValue={data.about.instagram!}
+              defaultValue={data.projects.adress!}
             />
-            <input
-              type="text"
-              name="twitter"
-              placeholder="Twitter"
+            <textarea
+              itemType="text"
+              name="comment"
               className="form-control mb-4"
-              defaultValue={data.about.twitter!}
-            />
-            <input
-              type="text"
-              name="github"
-              placeholder="Github"
-              className="form-control mb-4"
-              defaultValue={data.about.github!}
-            />
-            <input
-              type="text"
-              name="linkedin"
-              placeholder="Linkedin"
-              className="form-control mb-4"
-              defaultValue={data.about.linkedin!}
-            />
-            <input
-              type="text"
-              name="google"
-              placeholder="Google"
-              className="form-control"
-              defaultValue={data.about.google!}
-            />
+              placeholder="adress"
+              defaultValue={data.projects.comment!}
+            ></textarea>
+
             <button
               itemType="submit"
               className="block bg-indigo-800 px-4 py-1 mt-4 rounded-md mb-7"

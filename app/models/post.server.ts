@@ -97,18 +97,18 @@ export async function projectDeletePost(id:number) {
 
 //ADMIN CONTACT
 
-export async function contactCreatePost(project: any) {
-  return db.projects.create({ data: project });
+export async function contactCreatePost(contact: any) {
+  return db.contact.create({ data: contact });
 }
 
 export async function contactFindPost(id: number) {
-  return db.projects.findFirst({ where: { id } });
+  return db.contact.findFirst({ where: { id } });
 }
 
 export async function contactUpdatePost(id: number, deger:any) {
-  return db.projects.update({ where: { id }, data: deger});
+  return db.contact.update({ where: { id }, data: deger});
 }
 
 export async function contactDeletePost(id:number) {
-  return await db.projects.delete({where:{id}})
+  return await db.contact.delete({where:{id}})
 }

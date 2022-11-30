@@ -79,3 +79,36 @@ export async function experianceDeletePost(id:number) {
 
 //ADMIN PROJECT
 
+export async function projectCreatePost(project: any) {
+  return db.projects.create({ data: project });
+}
+
+export async function projectFindPost(id: number) {
+  return db.projects.findFirst({ where: { id } });
+}
+
+export async function projectUpdatePost(id: number, deger:any) {
+  return db.projects.update({ where: { id }, data: deger});
+}
+
+export async function projectDeletePost(id:number) {
+  return await db.projects.delete({where:{id}})
+}
+
+//ADMIN CONTACT
+
+export async function contactCreatePost(project: any) {
+  return db.projects.create({ data: project });
+}
+
+export async function contactFindPost(id: number) {
+  return db.projects.findFirst({ where: { id } });
+}
+
+export async function contactUpdatePost(id: number, deger:any) {
+  return db.projects.update({ where: { id }, data: deger});
+}
+
+export async function contactDeletePost(id:number) {
+  return await db.projects.delete({where:{id}})
+}

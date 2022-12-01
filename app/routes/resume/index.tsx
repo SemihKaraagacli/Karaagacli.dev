@@ -6,7 +6,12 @@ import {
   faSuitcase,
   faMedal,
 } from "@fortawesome/free-solid-svg-icons";
-import { MetaFunction } from "@remix-run/node";
+import { json, LoaderFunction, MetaFunction } from "@remix-run/node";
+import { resumeJob, resumeSchool } from "@prisma/client";
+import { db } from "~/utils/db.server";
+import { useLoaderData } from "@remix-run/react";
+import education from "../admin/education";
+import experiance from "../admin/experiance";
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
@@ -14,7 +19,18 @@ export const meta: MetaFunction = () => ({
   viewport: "width=device-width,initial-scale=1",
 });
 
+type loaderData = { school: Array<resumeSchool>; job: Array<resumeJob> };
+
+export const loader: LoaderFunction = async () => {
+  const data: loaderData = {
+    school: await db.resumeSchool.findMany(),
+    job: await db.resumeJob.findMany(),
+  };
+  return json(data);
+};
+
 export default function Index() {
+  const data = useLoaderData<loaderData>();
   return (
     <>
       <div className="a">
@@ -64,24 +80,30 @@ export default function Index() {
                 <div className="school-title-name">EĞİTİM</div>
               </div>
               <div className="line"></div>
-              <div className="circle"></div>
-              <div className="school-info">
-                <div className="resume-name">
-                  Ankara Üniversitesi Gama Meslek Yüksekokulu
-                </div>
-                <div className="resume-date">2018 - 2020</div>
-                <div className="resume-department">
-                  Biyomedikal Cihaz Teknolojileri
-                </div>
-                <div className="resume-explanation">
-                  It is a long established fact that a reader will be distracted
-                  by the readable content of a page when looking at its layout.
-                  The point of using Lorem Ipsum is that it has a more-or-less
-                  normal distribution of letters, as opposed to using
-                </div>
-              </div>
+              {data.school
+                .sort((a, b) => a.id - b.id)
+                .map((education) => (
+                  <div>
+                    <div className="circle"></div>
+                    <div className="school-info">
+                      <div key={education.id} className="resume-name">
+                        {education.name}
+                      </div>
+                      <div key={education.id} className="resume-date">
+                        {education.date}
+                      </div>
+                      <div key={education.id} className="resume-department">
+                        {education.department}
+                      </div>
+                      <div key={education.id} className="resume-explanation">
+                        {education.explanation}
+                      </div>
+                    </div>
+                  </div>
+                ))}
             </div>
           </div>
+
           <div className="col-md-6">
             <div className="job">
               <div className="job-head gap-2">
@@ -92,22 +114,27 @@ export default function Index() {
                 <div className="job-title-name">DENEYİM</div>
               </div>
               <div className="line"></div>
-              <div className="circle"></div>
-              <div className="job-info">
-                <div className="resume-name">
-                  Ankara Üniversitesi Gama Meslek Yüksekokulu
-                </div>
-                <div className="resume-date">2018 - 2020</div>
-                <div className="resume-department">
-                  Biyomedikal Cihaz Teknolojileri
-                </div>
-                <div className="resume-explanation">
-                  It is a long established fact that a reader will be distracted
-                  by the readable content of a page when looking at its layout.
-                  The point of using Lorem Ipsum is that it has a more-or-less
-                  normal distribution of letters, as opposed to using
-                </div>
-              </div>
+              {data.job
+                .sort((a, b) => a.id - b.id)
+                .map((experiance) => (
+                  <div>
+                    <div className="circle"></div>
+                    <div className="job-info">
+                      <div key={experiance.id} className="resume-name">
+                        {experiance.name}
+                      </div>
+                      <div key={experiance.id} className="resume-date">
+                        {experiance.date}
+                      </div>
+                      <div key={experiance.id} className="resume-department">
+                        {experiance.department}
+                      </div>
+                      <div key={experiance.id} className="resume-explanation">
+                        {experiance.explanation}
+                      </div>
+                    </div>
+                  </div>
+                ))}
             </div>
           </div>
         </div>

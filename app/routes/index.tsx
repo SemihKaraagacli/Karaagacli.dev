@@ -1,7 +1,10 @@
-import { Button, Nav, Row, Container, Col } from "react-bootstrap";
-import { MetaFunction } from "@remix-run/node";
-import { Scripts } from "@remix-run/react";
+import { Nav } from "react-bootstrap";
+import { json, LoaderFunction, MetaFunction } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
 import t from "../styles/style.css";
+import { main } from "@prisma/client";
+import { db } from "~/utils/db.server";
+import main from "./admin/main";
 
 export function links() {
   return [{ rel: "stylesheet", href: t }];
@@ -13,12 +16,28 @@ export const meta: MetaFunction = () => ({
   viewport: "width=device-width,initial-scale=1",
 });
 
+type loaderData = { mains: Array<main> };
+
+export const loader: LoaderFunction = async () => {
+  const data: loaderData = {
+    mains: await db.main.findMany(),
+  };
+  return json(data);
+};
+
 export default function Index() {
+  const data = useLoaderData<loaderData>();
   return (
     <>
       <div className="">
         <div className="sky">
-          <div className="text">#CODEVEMBER</div>
+          {data.mains
+            .sort((a, b) => a.id - b.id)
+            .map((main) => (
+              <div key={main.id} className="text">
+                {main.welcomeWrite}
+              </div>
+            ))}
           <div className="stars"></div>
           <div className="stars1"></div>
           <div className="stars2"></div>

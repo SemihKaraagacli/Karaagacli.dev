@@ -1,9 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { Nav } from "react-bootstrap";
-import { MetaFunction } from "@remix-run/node";
+import { json, LoaderFunction, MetaFunction } from "@remix-run/node";
 
 import auto from "public/images/project-image/auto.jpg";
+import { projects } from "@prisma/client";
+import { db } from "~/utils/db.server";
+import { useLoaderData } from "@remix-run/react";
+import projects from "../admin/projects";
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
@@ -11,7 +15,17 @@ export const meta: MetaFunction = () => ({
   viewport: "width=device-width,initial-scale=1",
 });
 
+type loaderData = { project: Array<projects> };
+
+export const loader: LoaderFunction = async () => {
+  const data: loaderData = {
+    project: await db.projects.findMany(),
+  };
+  return json(data);
+};
+
 export default function Index() {
+  const data = useLoaderData<loaderData>();
   return (
     <>
       <div className="a">
@@ -50,20 +64,33 @@ export default function Index() {
         </div>
         <div className="self-2">
           <div className="projects-info gap-3">
-            <a className="projects-adress" href="https://github.com/">
-              <div className="f">
-                <img src={auto} alt="" className="auto" />
-                <div className="project-name">Project One Test</div>
-                <div className="project-comment">Web Development</div>
-              </div>
-            </a>
-            <a className="projects-adress" href="https://github.com/">
-              <div className="f">
-                <img src={auto} alt="" className="auto" />
-                <div className="project-name">Project One Test</div>
-                <div className="project-comment">Web Development</div>
-              </div>
-            </a>
+            {data.project
+              .sort((a, b) => a.id - b.id)
+              .map((projects) => (
+                <>
+                  <a
+                    key={projects.id}
+                    className="projects-adress"
+                    href={projects.adress!}
+                  >
+                    <div className="f">
+                      <img
+                        key={projects.id}
+                        src={`/images/project-image/${projects.projectImageName}`}
+                        alt=""
+                        className="auto"
+                      />
+                      <div key={projects.id} className="project-name">
+                        {projects.name}
+                      </div>
+                      <div key={projects.id} className="project-comment">
+                        {projects.comment}
+                      </div>
+                    </div>
+                  </a>
+                </>
+              ))
+              .reverse()}
           </div>
         </div>
       </div>

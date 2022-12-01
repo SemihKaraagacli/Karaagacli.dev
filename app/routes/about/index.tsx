@@ -9,7 +9,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { json, LoaderFunction, MetaFunction } from "@remix-run/node";
 import { Nav } from "react-bootstrap";
-import avatar from "public/images/profil-image/avatar.jpg";
 import { about } from "@prisma/client";
 import { db } from "~/utils/db.server";
 import { useLoaderData } from "@remix-run/react";
@@ -104,43 +103,8 @@ export default function Index() {
               </div>
             </div>
           </div>
-        ))}
-      {/* <div className="column-1">
-          <div className="page-head gap-2">
-            <FontAwesomeIcon className="head-icon" icon={faChevronRight} />
-            HAKKIMDA
-          </div>
-          <div className="info">
-            It is a long established fact that a reader will be distracted by
-            the readable content of a page when looking at its layout. The point
-            of using Lorem Ipsum is that it has a more-or-less normal
-            distribution of letters, as opposed to using 'Content here, content
-            here', making it look like readable English. Many desktop publishing
-            packages and web page editors now use Lorem Ipsum as their
-          </div>
-        </div> */}
-      {/* <div className="column-2">
-          <img className="avatar" src={avatar} alt="avatar" />
-          <div className="name">Semih KARAAĞAÇLI</div>
-          <div className="social-media">
-            <a className="" href="#">
-              <FontAwesomeIcon className="sm-icon" icon={faInstagram} />
-            </a>
-            <a className="" href="#">
-              <FontAwesomeIcon className="sm-icon" icon={faTwitter} />
-            </a>
-            <a className="" href="#">
-              <FontAwesomeIcon className="sm-icon" icon={faLinkedinIn} />
-            </a>
-            <a className="" href="#">
-              <FontAwesomeIcon className="sm-icon" icon={faGithub} />
-            </a>
-            <a className="" href="#">
-              <FontAwesomeIcon className="sm-icon" icon={faGoogle} />
-            </a>
-          </div>
-        </div>
-      </div> */}
+        ))
+        .reverse()}
     </>
   );
 }

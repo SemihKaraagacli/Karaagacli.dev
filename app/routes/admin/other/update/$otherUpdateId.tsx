@@ -1,13 +1,16 @@
-import { ActionFunction, MetaFunction } from "@remix-run/node";
+import { ActionFunction, json, MetaFunction, redirect } from "@remix-run/node";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faRightFromBracket,
   faAnglesRight,
 } from "@fortawesome/free-solid-svg-icons";
-import { Form, Nav } from "react-bootstrap";
+import { Nav } from "react-bootstrap";
 import admin from "~/styles/admin.css";
-import { redirect } from "@remix-run/node";
-import { educationCreatePost } from "~/models/post.server";
+import { useLoaderData } from "@remix-run/react";
+import type { LoaderFunction } from "@remix-run/node";
+import { othersFindPost, othersUpdatePost } from "~/models/post.server";
+import type { others } from "@prisma/client";
+import { Form } from "@remix-run/react";
 import background from "public/images/background.jpg";
 export function links() {
   return [{ rel: "stylesheet", href: admin }];
@@ -18,24 +21,40 @@ export const meta: MetaFunction = () => ({
   viewport: "width=device-width,initial-scale=1",
 });
 
-export const action: ActionFunction = async ({ request }) => {
-  const formData = await request.formData();
-  const name = formData.get("name");
-  const date = formData.get("date");
-  const department = formData.get("department");
-  const explanation = formData.get("explanation");
+type loaderData = { other: others };
 
-  await educationCreatePost({ name, date, department, explanation });
-  return redirect("/admin/education");
+export const loader: LoaderFunction = async ({ params }) => {
+  const id = params.otherUpdateId;
+  const post = await othersFindPost(parseInt(id!));
+  if (!post) {
+    return redirect("/admin/other");
+  }
+  const data: loaderData = {
+    other: post,
+  };
+  return json(data);
 };
 
-export default function Index() {
+export const action: ActionFunction = async ({ request, params }) => {
+  const id = params.otherUpdateId;
+  const formData = await request.formData();
+  const name = formData.get("name");
+
+  const deger = {
+    name,
+  } as any;
+
+  await othersUpdatePost(parseInt(id!), deger);
+  return redirect(`/admin/other`);
+};
+export default function Update() {
+  const data = useLoaderData<loaderData>();
   return (
     <>
       <img className="home-img" src={background} alt="" />
       <div className="home">
         <div className="home-navbar">
-          <Nav className=" navi" activeKey="/home">
+          <Nav className=" navi">
             <div className="navii">
               <Nav.Item>
                 <Nav.Link className="navi-link" href="/admin/home">
@@ -91,7 +110,7 @@ export default function Index() {
           </Nav>
         </div>
         <div className="head-row">
-          <div className="head-name">Create</div>
+          <div className="head-name">Update</div>
           <a
             className="flex flex-row items-center gap-1 no-underline"
             href="../"
@@ -100,43 +119,27 @@ export default function Index() {
             <FontAwesomeIcon className="head-icon" icon={faAnglesRight} />
           </a>
         </div>
-
-        <Form
-          className="flex flex-col items-center px-32"
-          method="post"
-          //   action=""
-        >
-          <input
-            type="text"
-            name="name"
-            placeholder="Name"
-            className="form-control mb-4"
-          />
-          <input
-            type="text"
-            name="date"
-            placeholder="Date"
-            className="form-control mb-4"
-          />
-          <input
-            type="text"
-            name="department"
-            placeholder="Department"
-            className="form-control mb-4"
-          />
-          <textarea
-            itemType="text"
-            name="explanation"
-            className="form-control mb-4"
-            placeholder="Epxlanation"
-          ></textarea>
-          <button
-            itemType="submit"
-            className="block bg-indigo-800 px-4 py-1 mt-4 rounded-md mb-7"
+        <div className="inputs">
+          <Form
+            className="flex flex-col items-center px-32"
+            method="post"
+            // action=""
+            encType="multipart/form-data"
           >
-            Save
-          </button>
-        </Form>
+            <input
+              type="text"
+              name="name"
+              className="form-control mb-4"
+              defaultValue={data.other.name!}
+            />
+            <button
+              itemType="submit"
+              className="block bg-indigo-800 px-4 py-1 mt-4 rounded-md mb-7"
+            >
+              Save
+            </button>
+          </Form>
+        </div>
       </div>
     </>
   );

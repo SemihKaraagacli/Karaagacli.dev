@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import admin from "~/styles/admin.css";
 import { useLoaderData } from "@remix-run/react";
-import type { about, projects } from "@prisma/client";
+import type { projects } from "@prisma/client";
 import { db } from "~/utils/db.server";
 import background from "public/images/background.jpg";
 export function links() {
@@ -53,6 +53,21 @@ export default function Index() {
               <Nav.Item>
                 <Nav.Link className="navi-link" href="/admin/experiance">
                   EXPERİANCE
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link className="navi-link" href="/admin/framework">
+                  FRAMEWORK
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link className="navi-link" href="/admin/language">
+                  LANGUAGE
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link className="navi-link" href="/admin/other">
+                  OTHER
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item>

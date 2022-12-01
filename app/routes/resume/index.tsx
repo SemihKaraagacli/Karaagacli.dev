@@ -7,11 +7,18 @@ import {
   faMedal,
 } from "@fortawesome/free-solid-svg-icons";
 import { json, LoaderFunction, MetaFunction } from "@remix-run/node";
-import { resumeJob, resumeSchool } from "@prisma/client";
+import {
+  frameworks,
+  languages,
+  others,
+  resumeJob,
+  resumeSchool,
+} from "@prisma/client";
 import { db } from "~/utils/db.server";
 import { useLoaderData } from "@remix-run/react";
 import education from "../admin/education";
 import experiance from "../admin/experiance";
+import language from "../admin/language";
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
@@ -19,12 +26,21 @@ export const meta: MetaFunction = () => ({
   viewport: "width=device-width,initial-scale=1",
 });
 
-type loaderData = { school: Array<resumeSchool>; job: Array<resumeJob> };
+type loaderData = {
+  school: Array<resumeSchool>;
+  job: Array<resumeJob>;
+  framework: Array<frameworks>;
+  language: Array<languages>;
+  other: Array<others>;
+};
 
 export const loader: LoaderFunction = async () => {
   const data: loaderData = {
     school: await db.resumeSchool.findMany(),
     job: await db.resumeJob.findMany(),
+    framework: await db.frameworks.findMany(),
+    language: await db.languages.findMany(),
+    other: await db.others.findMany(),
   };
   return json(data);
 };
@@ -100,7 +116,8 @@ export default function Index() {
                       </div>
                     </div>
                   </div>
-                ))}
+                ))
+                .reverse()}
             </div>
           </div>
 
@@ -148,36 +165,48 @@ export default function Index() {
           <div className="ability-info">
             <div className="col-md-4">
               <div className="language">Languages</div>
-              <div className="self gap-1">
-                <div className="ability-circle"></div>
-                <div className="language-info">HTML5</div>
-              </div>
-              <div className="self gap-1">
-                <div className="ability-circle"></div>
-                <div className="language-info">CSS</div>
-              </div>
+              {data.language
+                .sort((a, b) => a.id - b.id)
+                .map((language) => (
+                  <>
+                    <div className="self gap-1">
+                      <div className="ability-circle"></div>
+                      <div key={language.id} className="language-info">
+                        {language.name}
+                      </div>
+                    </div>
+                  </>
+                ))}
             </div>
             <div className="col-md-4">
               <div className="framework">Frameworks</div>
-              <div className="self gap-1">
-                <div className="ability-circle"></div>
-                <div className="framework-info">NodeJs</div>
-              </div>
-              <div className="self gap-1">
-                <div className="ability-circle"></div>
-                <div className="framework-info">Typescript</div>
-              </div>
+              {data.framework
+                .sort((a, b) => a.id - b.id)
+                .map((framework) => (
+                  <>
+                    <div className="self gap-1">
+                      <div className="ability-circle"></div>
+                      <div key={framework.id} className="language-info">
+                        {framework.name}
+                      </div>
+                    </div>
+                  </>
+                ))}
             </div>
             <div className="col-md-4">
               <div className="others">Others</div>
-              <div className="self gap-1">
-                <div className="ability-circle"></div>
-                <div className="others-info">Adobe Illustrator</div>
-              </div>
-              <div className="self gap-1">
-                <div className="ability-circle"></div>
-                <div className="others-info">Figma</div>
-              </div>
+              {data.other
+                .sort((a, b) => a.id - b.id)
+                .map((other) => (
+                  <>
+                    <div className="self gap-1">
+                      <div className="ability-circle"></div>
+                      <div key={other.id} className="language-info">
+                        {other.name}
+                      </div>
+                    </div>
+                  </>
+                ))}
             </div>
           </div>
         </div>

@@ -1,9 +1,5 @@
 import { db } from "~/utils/db.server";
 
-// export async function getMains() {
-//   return db.main.findFirst();
-// }
-
 // ADMİN MAİN
 
 export async function createPost(main: any) {
@@ -111,4 +107,58 @@ export async function contactUpdatePost(id: number, deger:any) {
 
 export async function contactDeletePost(id:number) {
   return await db.contact.delete({where:{id}})
+}
+
+//ADMIN FRAMEWORKS
+
+export async function frameworksCreatePost(frameworks: any) {
+  return db.frameworks.create({ data: frameworks });
+}
+
+export async function frameworksFindPost(id: number) {
+  return db.frameworks.findFirst({ where: { id } });
+}
+
+export async function frameworksUpdatePost(id: number, deger:any) {
+  return db.frameworks.update({ where: { id }, data: deger});
+}
+
+export async function frameworksDeletePost(id:number) {
+  return await db.frameworks.delete({where:{id}})
+}
+
+//ADMIN LANGUAGES
+
+export async function languagesCreatePost(frameworks: any) {
+  return db.languages.create({ data: frameworks });
+}
+
+export async function languagesFindPost(id: number) {
+  return db.languages.findFirst({ where: { id } });
+}
+
+export async function languagesUpdatePost(id: number, deger:any) {
+  return db.languages.update({ where: { id }, data: deger});
+}
+
+export async function languagesDeletePost(id:number) {
+  return await db.languages.delete({where:{id}})
+}
+
+//ADMIN OTHERS
+
+export async function othersCreatePost(frameworks: any) {
+  return db.others.create({ data: frameworks });
+}
+
+export async function othersFindPost(id: number) {
+  return db.others.findFirst({ where: { id } });
+}
+
+export async function othersUpdatePost(id: number, deger:any) {
+  return db.others.update({ where: { id }, data: deger});
+}
+
+export async function othersDeletePost(id:number) {
+  return await db.others.delete({where:{id}})
 }

@@ -6,8 +6,12 @@ import {
   faMapMarkerAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { Nav, Row, Col, Form, Button } from "react-bootstrap";
-import { MetaFunction } from "@remix-run/node";
-import React from "react";
+import { json, LoaderFunction, MetaFunction } from "@remix-run/node";
+import { contact } from "@prisma/client";
+import { db } from "~/utils/db.server";
+import { useLoaderData } from "@remix-run/react";
+import contact from "../admin/contact";
+import contact from "../admin/contact";
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
@@ -15,7 +19,17 @@ export const meta: MetaFunction = () => ({
   viewport: "width=device-width,initial-scale=1",
 });
 
+type loaderData = { contact: Array<contact> };
+
+export const loader: LoaderFunction = async () => {
+  const data: loaderData = {
+    contact: await db.contact.findMany(),
+  };
+  return json(data);
+};
+
 export default function Index() {
+  const data = useLoaderData<loaderData>();
   return (
     <>
       <div className="a">
@@ -87,39 +101,50 @@ export default function Index() {
                 </Row>
               </Form>
             </div>
-            <div className="col-md-5">
-              <div className="contact-info margin-1 gap-6">
-                <FontAwesomeIcon className="contact-icon " icon={faPhone} />
-                <div className="contact-icon-info">
-                  <div className="contact-icon-name">Telefon</div>
-                  <div className="contact-name">+90 (5xx) xxx xx xx</div>
-                </div>
-              </div>
-              <div className="contact-info gap-6">
-                <FontAwesomeIcon className="contact-icon" icon={faEnvelope} />
-                <div className="contact-icon-info">
-                  <div className="contact-icon-name">Mail</div>
-                  <a href="mailto:karaagaclisemih@gmail.com">
-                    <div className="contact-name">
-                      KaraagacliSemih@gmail.com
+            {data.contact
+              .sort((a, b) => a.id - b.id)
+              .map((contact) => (
+                <>
+                  <div className="col-md-5">
+                    <div className="contact-info margin-1 gap-6">
+                      <FontAwesomeIcon
+                        className="contact-icon "
+                        icon={faPhone}
+                      />
+                      <div className="contact-icon-info">
+                        <div className="contact-icon-name">Telefon</div>
+                        <div className="contact-name">+90 (5xx) xxx xx xx</div>
+                      </div>
                     </div>
-                  </a>
-                </div>
-              </div>
-
-              <div className="contact-info gap-6">
-                <FontAwesomeIcon
-                  className="contact-icon"
-                  icon={faMapMarkerAlt}
-                />
-                <div className="contact-icon-info">
-                  <div className="contact-icon-name">Adres</div>
-                  <a href="https://goo.gl/maps/cPh6TyaradfhrHLe9">
-                    <div className="contact-name">Trabzon / TÜRKİYE</div>
-                  </a>
-                </div>
-              </div>
-            </div>
+                    <div className="contact-info gap-6">
+                      <FontAwesomeIcon
+                        className="contact-icon"
+                        icon={faEnvelope}
+                      />
+                      <div className="contact-icon-info">
+                        <div className="contact-icon-name">Mail</div>
+                        <a key={contact.id} href={contact.google!}>
+                          <div className="contact-name">{contact.name}</div>
+                        </a>
+                      </div>
+                    </div>
+                    <div className="contact-info gap-6">
+                      <FontAwesomeIcon
+                        className="contact-icon"
+                        icon={faMapMarkerAlt}
+                      />
+                      <div className="contact-icon-info">
+                        <div className="contact-icon-name">Adres</div>
+                        <a key={contact.id} href={contact.adressWebAdress!}>
+                          <div className="contact-name">
+                            {contact.adressName}
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              ))}
           </div>
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1505.471757534164!2d39.730077!3d41.0046095!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40643c4467d413c3%3A0xe0d8e39ac277ba48!2sTrabzon%20Meydan%20Park%C4%B1!5e0!3m2!1sen!2str!4v1668979900446!5m2!1sen!2str"

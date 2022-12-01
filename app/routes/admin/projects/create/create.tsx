@@ -82,6 +82,21 @@ export default function Index() {
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item>
+                <Nav.Link className="navi-link" href="/admin/framework">
+                  FRAMEWORK
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link className="navi-link" href="/admin/language">
+                  LANGUAGE
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link className="navi-link" href="/admin/other">
+                  OTHER
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
                 <Nav.Link className="navi-link" href="/admin/projects">
                   PROJECTS
                 </Nav.Link>
@@ -137,7 +152,7 @@ export default function Index() {
             itemType="text"
             name="comment"
             className="form-control mb-4"
-            placeholder="adress"
+            placeholder="comment"
           ></textarea>
 
           <button

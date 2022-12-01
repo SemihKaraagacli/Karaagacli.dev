@@ -1,35 +1,32 @@
-import { ActionFunction, MetaFunction } from "@remix-run/node";
+import { Nav, Table } from "react-bootstrap";
+import { json, LoaderFunction, MetaFunction } from "@remix-run/node";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faRightFromBracket,
-  faAnglesRight,
-} from "@fortawesome/free-solid-svg-icons";
-import { Form, Nav } from "react-bootstrap";
+import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import admin from "~/styles/admin.css";
-import { redirect } from "@remix-run/node";
-import { educationCreatePost } from "~/models/post.server";
+import { useLoaderData } from "@remix-run/react";
+import type { others } from "@prisma/client";
+import { db } from "~/utils/db.server";
 import background from "public/images/background.jpg";
 export function links() {
   return [{ rel: "stylesheet", href: admin }];
 }
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
-  title: "Home-Create",
+  title: "Home",
   viewport: "width=device-width,initial-scale=1",
 });
 
-export const action: ActionFunction = async ({ request }) => {
-  const formData = await request.formData();
-  const name = formData.get("name");
-  const date = formData.get("date");
-  const department = formData.get("department");
-  const explanation = formData.get("explanation");
+type loaderData = { other: Array<others> };
 
-  await educationCreatePost({ name, date, department, explanation });
-  return redirect("/admin/education");
+export const loader: LoaderFunction = async () => {
+  const data: loaderData = {
+    other: await db.others.findMany(),
+  };
+  return json(data);
 };
 
 export default function Index() {
+  const data = useLoaderData<loaderData>();
   return (
     <>
       <img className="home-img" src={background} alt="" />
@@ -38,7 +35,7 @@ export default function Index() {
           <Nav className=" navi" activeKey="/home">
             <div className="navii">
               <Nav.Item>
-                <Nav.Link className="navi-link" href="/admin/home">
+                <Nav.Link className="navi-link" href="/admin/main">
                   MAİN
                 </Nav.Link>
               </Nav.Item>
@@ -77,6 +74,7 @@ export default function Index() {
                   PROJECTS
                 </Nav.Link>
               </Nav.Item>
+
               <Nav.Item>
                 <Nav.Link className="navi-link" href="/admin/contact">
                   CONTACT
@@ -90,53 +88,52 @@ export default function Index() {
             </Nav.Item>
           </Nav>
         </div>
-        <div className="head-row">
-          <div className="head-name">Create</div>
-          <a
-            className="flex flex-row items-center gap-1 no-underline"
-            href="../"
-          >
-            <div className="head-icon-name">Geri</div>
-            <FontAwesomeIcon className="head-icon" icon={faAnglesRight} />
-          </a>
+        <div className="home-tables">
+          <Table striped bordered hover variant="dark">
+            <thead className="text-center">
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>-</th>
+                <th>-</th>
+              </tr>
+            </thead>
+            <tbody className="text-center">
+              {data.other
+                .sort((a, b) => a.id - b.id)
+                .map((others) => (
+                  <tr>
+                    <td key={others.id}>{others.id}</td>
+                    <td key={others.id}>{others.name}</td>
+                    <td>
+                      <div className="flex flex-col items-center ">
+                        <a
+                          className="remove"
+                          href={`/admin/other/delete/${others.id}`}
+                        >
+                          Remove
+                        </a>
+                      </div>
+                    </td>
+                    <td>
+                      <div className="flex flex-col items-center">
+                        <a
+                          className="update"
+                          href={`/admin/other/update/${others.id}`}
+                        >
+                          Update
+                        </a>
+                      </div>
+                    </td>
+                  </tr>
+                ))
+                .reverse()}
+            </tbody>
+          </Table>
         </div>
-
-        <Form
-          className="flex flex-col items-center px-32"
-          method="post"
-          //   action=""
-        >
-          <input
-            type="text"
-            name="name"
-            placeholder="Name"
-            className="form-control mb-4"
-          />
-          <input
-            type="text"
-            name="date"
-            placeholder="Date"
-            className="form-control mb-4"
-          />
-          <input
-            type="text"
-            name="department"
-            placeholder="Department"
-            className="form-control mb-4"
-          />
-          <textarea
-            itemType="text"
-            name="explanation"
-            className="form-control mb-4"
-            placeholder="Epxlanation"
-          ></textarea>
-          <button
-            itemType="submit"
-            className="block bg-indigo-800 px-4 py-1 mt-4 rounded-md mb-7"
-          >
-            Save
-          </button>
-        </Form>
+        <a className="create" href="/admin/other/create/create">
+          Create
+        </a>
       </div>
     </>
   );

@@ -64,3 +64,18 @@ model contact {
   adressWebAdress String?
   google          String?
 }
+
+model languages {
+  id   Int     @id @default(autoincrement())
+  name String?
+}
+
+model frameworks {
+  id   Int     @id @default(autoincrement())
+  name String?
+}
+
+model others {
+  id   Int     @id @default(autoincrement())
+  name String?
+}

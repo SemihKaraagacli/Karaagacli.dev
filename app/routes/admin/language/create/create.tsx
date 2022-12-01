@@ -7,7 +7,7 @@ import {
 import { Form, Nav } from "react-bootstrap";
 import admin from "~/styles/admin.css";
 import { redirect } from "@remix-run/node";
-import { educationCreatePost } from "~/models/post.server";
+import { languagesCreatePost } from "~/models/post.server";
 import background from "public/images/background.jpg";
 export function links() {
   return [{ rel: "stylesheet", href: admin }];
@@ -21,12 +21,9 @@ export const meta: MetaFunction = () => ({
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
   const name = formData.get("name");
-  const date = formData.get("date");
-  const department = formData.get("department");
-  const explanation = formData.get("explanation");
 
-  await educationCreatePost({ name, date, department, explanation });
-  return redirect("/admin/education");
+  await languagesCreatePost({ name });
+  return redirect("/admin/language");
 };
 
 export default function Index() {
@@ -112,24 +109,6 @@ export default function Index() {
             placeholder="Name"
             className="form-control mb-4"
           />
-          <input
-            type="text"
-            name="date"
-            placeholder="Date"
-            className="form-control mb-4"
-          />
-          <input
-            type="text"
-            name="department"
-            placeholder="Department"
-            className="form-control mb-4"
-          />
-          <textarea
-            itemType="text"
-            name="explanation"
-            className="form-control mb-4"
-            placeholder="Epxlanation"
-          ></textarea>
           <button
             itemType="submit"
             className="block bg-indigo-800 px-4 py-1 mt-4 rounded-md mb-7"

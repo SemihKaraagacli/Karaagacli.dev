@@ -21,8 +21,13 @@ body {
   color: #fff;
   margin-top: 18%;
   font-size: 35px;
-  font-family: "Lora", serif;
+  font-family: "Inter", sans-serif;
   font-weight: bold;
+}
+
+.text-2 {
+  background-color: #0201075a;
+  padding: 5px;
 }
 
 .z {
@@ -36,25 +41,25 @@ body {
   flex-direction: column;
   align-items: center;
   margin-top: 15px;
-  font-family: "Lora", serif;
+  font-family: "Inter", sans-serif;
 }
 
 .ab {
   position: absolute;
   border-radius: 10px;
-  background-color: #c7c3cf5d;
-  width: 80%;
+  background-color: #5050532a;
+  width: 90%;
 }
 
 .abc {
   padding: 15px 55px;
   font-size: 18px;
   font-weight: 600;
-  color: #ff7403;
+  color: #ffffff;
 }
 
 .abc:hover {
-  color: #e60808;
+  color: #ff7403;
 }
 
 .stars {

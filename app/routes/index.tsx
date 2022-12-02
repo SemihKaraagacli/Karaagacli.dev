@@ -67,7 +67,7 @@ export default function Index() {
             {data.mains
               .sort((a, b) => a.id - b.id)
               .map((main) => (
-                <div key={main.id} className="">
+                <div key={main.id} className="text-2">
                   {main.welcomeWrite}
                 </div>
               ))}

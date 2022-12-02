@@ -31,48 +31,52 @@ export default function Index() {
     <>
       <div className="">
         <div className="sky">
-          {data.mains
-            .sort((a, b) => a.id - b.id)
-            .map((main) => (
-              <div key={main.id} className="text">
-                {main.welcomeWrite}
-              </div>
-            ))}
+          <div className="z">
+            <div className="row a">
+              <Nav className="justify-content-center ab" activeKey="/home">
+                <Nav.Item>
+                  <Nav.Link className="abc" href="/">
+                    MAİN
+                  </Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link className="abc" href="/about">
+                    ABOUT
+                  </Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link className="abc" href="/resume">
+                    RESUME
+                  </Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link className="abc" href="/projects">
+                    PROJECTS
+                  </Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link className="abc" href="/contact">
+                    CONTACT
+                  </Nav.Link>
+                </Nav.Item>
+              </Nav>
+            </div>
+          </div>
+
+          <div className="flex flex-col items-center text">
+            {data.mains
+              .sort((a, b) => a.id - b.id)
+              .map((main) => (
+                <div key={main.id} className="">
+                  {main.welcomeWrite}
+                </div>
+              ))}
+          </div>
+
           <div className="stars"></div>
           <div className="stars1"></div>
           <div className="stars2"></div>
           <div className="shooting-stars"></div>
-        </div>
-      </div>
-      <div className="z">
-        <div className="row a">
-          <Nav className="justify-content-center ab" activeKey="/home">
-            <Nav.Item>
-              <Nav.Link className="abc" href="/">
-                MAİN
-              </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link className="abc" href="/about">
-                ABOUT
-              </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link className="abc" href="/resume">
-                RESUME
-              </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link className="abc" href="/projects">
-                PROJECTS
-              </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link className="abc" href="/contact">
-                CONTACT
-              </Nav.Link>
-            </Nav.Item>
-          </Nav>
         </div>
       </div>
     </>

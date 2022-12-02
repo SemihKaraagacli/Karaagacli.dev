@@ -16,9 +16,6 @@ import {
 } from "@prisma/client";
 import { db } from "~/utils/db.server";
 import { useLoaderData } from "@remix-run/react";
-import education from "../admin/education";
-import experiance from "../admin/experiance";
-import language from "../admin/language";
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
@@ -151,7 +148,8 @@ export default function Index() {
                       </div>
                     </div>
                   </div>
-                ))}
+                ))
+                .reverse()}
             </div>
           </div>
         </div>
@@ -159,7 +157,7 @@ export default function Index() {
           <div className="ability">
             <div className="ability-head gap-2">
               <FontAwesomeIcon className="ability-icon-job" icon={faMedal} />
-              <div className="ability-title-name">YETENEKLER</div>
+              <div className="ability-title-name">BECERİLER</div>
             </div>
           </div>
           <div className="ability-info">
@@ -176,7 +174,8 @@ export default function Index() {
                       </div>
                     </div>
                   </>
-                ))}
+                ))
+                .reverse()}
             </div>
             <div className="col-md-4">
               <div className="framework">Frameworks</div>
@@ -191,7 +190,8 @@ export default function Index() {
                       </div>
                     </div>
                   </>
-                ))}
+                ))
+                .reverse()}
             </div>
             <div className="col-md-4">
               <div className="others">Others</div>
@@ -206,7 +206,8 @@ export default function Index() {
                       </div>
                     </div>
                   </>
-                ))}
+                ))
+                .reverse()}
             </div>
           </div>
         </div>

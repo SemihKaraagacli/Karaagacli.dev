@@ -90,7 +90,7 @@ export default function Index() {
         </div>
         <div className="home-tables">
           <Table striped bordered hover variant="dark">
-            <thead className="text-center">
+            <thead className="break-all text-center">
               <tr>
                 <th>#</th>
                 <th>AboutWrite</th>
@@ -104,7 +104,7 @@ export default function Index() {
                 <th>-</th>
               </tr>
             </thead>
-            <tbody className="text-center">
+            <tbody className="text-center break-all">
               {data.abouts
                 .sort((a, b) => a.id - b.id)
                 .map((about) => (

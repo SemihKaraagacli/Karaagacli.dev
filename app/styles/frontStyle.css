@@ -1,429 +1,424 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@100;200;300;400;500;600;700;800;900&family=Fira+Sans:wght@100;200;300;400;500;600;700;800;900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,700&family=Ubuntu:wght@300;400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@100;200;300;400;500;600;700;800;900&family=Fira+Sans:wght@100;200;300;400;500;600;700;800;900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,700&family=Ubuntu:wght@300;400;500;700&display=swap");
 
 body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    background-color: rgba(208, 206, 206, 0.285);
-    /* font-family: 'Barlow', sans-serif; */
-    /* font-family: 'Fira Sans', sans-serif; */
-    /* font-family: 'Inter', sans-serif; */
-    /* font-family: 'Lora', serif; */
-    /* font-family: 'Ubuntu', sans-serif; */
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  background-color: rgba(208, 206, 206, 0.285);
+  /* font-family: 'Barlow', sans-serif; */
+  /* font-family: 'Fira Sans', sans-serif; */
+  /* font-family: 'Inter', sans-serif; */
+  /* font-family: 'Lora', serif; */
+  /* font-family: 'Ubuntu', sans-serif; */
 }
 
 .a {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 15px;
-    font-family: 'Lora', serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+  font-family: "Lora", serif;
 }
 
 .ab {
-    border-radius: 10px;
-    background-color: #c7c3cf5d;
-    width: 90%;
+  border-radius: 10px;
+  background-color: #c7c3cf5d;
+  width: 90%;
 }
 
 .abc {
-    padding: 15px 55px;
-    font-size: 18px;
-    font-weight: 600;
-    color: #ff7403;
-
+  padding: 15px 55px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #ff7403;
 }
 
 .abc:hover {
-    color: #e60808;
+  color: #e60808;
 }
-
 
 /* ABOUT */
 .co {
-    margin-top: 10%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
+  margin-top: 10%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 .column-1 {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    position: relative;
-    bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  position: relative;
+  bottom: 80px;
 }
 
 .column-2 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .head-icon {
-    width: 25px;
-
+  width: 25px;
 }
 
 .page-head {
-    display: flex;
-    align-items: center;
-    font-size: 35px;
-    font-weight: 700;
-    font-family: 'Barlow', sans-serif;
-
+  display: flex;
+  align-items: center;
+  font-size: 35px;
+  font-weight: 700;
+  font-family: "Barlow", sans-serif;
 }
 
 .info {
-    /* width: 50%; */
-    font-size: 18px;
-    font-weight: 500;
-    text-align: justify;
-    font-family: 'Inter', sans-serif;
-    margin-top: 35px;
+  /* width: 50%; */
+  font-size: 18px;
+  font-weight: 500;
+  text-align: justify;
+  font-family: "Inter", sans-serif;
+  margin-top: 35px;
 }
 
 .avatar {
-    width: 260px;
-    height: 260px;
-    border-radius: 100%;
-    position: relative;
-    bottom: 25px;
+  width: 260px;
+  height: 280px;
+  border-radius: 100%;
+  position: relative;
+  bottom: 25px;
 }
 
 .name {
-    font-family: 'Barlow', sans-serif;
-    font-size: 22px;
-    font-weight: 600;
+  font-family: "Barlow", sans-serif;
+  font-size: 22px;
+  font-weight: 600;
 }
 
 .social-media {
-    display: flex;
-    flex-direction: row;
-    margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  margin-top: 30px;
 }
 
 .sm-icon {
-    width: 35px;
-    color: #ff7403;
-    margin-left: 20px;
+  width: 35px;
+  color: #ff7403;
+  margin-left: 20px;
 }
 
 /* RESUME */
 .resume {
-    padding: 40px 60px;
+  padding: 40px 60px;
 }
 
 .column-3 {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin-bottom: 30px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
 }
 
-.page-head .head-icon {}
+.page-head .head-icon {
+}
 
 .resume-icon-school,
 .resume-icon-job,
 .ability-icon-job {
-    font-size: 35px;
-    display: block;
-    background-color: #8d8888;
-    border-radius: 5px;
+  font-size: 35px;
+  display: block;
+  background-color: #8d8888;
+  border-radius: 5px;
 }
 
 .resume-icon-school {
-    padding: 3px 2px;
+  padding: 3px 2px;
 }
 
 .resume-icon-job,
 .ability-icon-job {
-    padding: 3px 7px;
+  padding: 3px 7px;
 }
 
 .school,
 .job,
 .ability {
-    margin-top: 30px;
+  margin-top: 30px;
 }
 
 .school-head,
 .job-head,
 .ability-head {
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
 }
 
 .school-title-name,
 .job-title-name,
 .ability-title-name {
-    margin-top: 4px;
-    font-size: 24px;
-    font-weight: 700;
-    font-family: 'Lora', serif;
+  margin-top: 4px;
+  font-size: 24px;
+  font-weight: 700;
+  font-family: "Lora", serif;
 }
 
 .line {
-    border-left: 3px solid rgb(0, 0, 0);
-    height: 40px;
-    margin-left: 22px;
+  border-left: 3px solid rgb(0, 0, 0);
+  height: 40px;
+  margin-left: 22px;
 }
 
 .circle {
-    border: 5px solid rgb(248, 224, 7);
-    background-color: rgb(248, 224, 7);
-    width: 5px;
-    border-radius: 60px;
-    margin-left: 18.5px;
+  border: 5px solid rgb(248, 224, 7);
+  background-color: rgb(248, 224, 7);
+  width: 5px;
+  border-radius: 60px;
+  margin-left: 18.5px;
 }
 
 .school-info,
 .job-info {
-    font-family: 'Inter', sans-serif;
-    border-left: 3px solid rgb(0, 0, 0);
-    border-radius: 1.5px;
-    padding-left: 20px;
-    padding-right: 25px;
-    margin-left: 22px;
+  font-family: "Inter", sans-serif;
+  border-left: 3px solid rgb(0, 0, 0);
+  border-radius: 1.5px;
+  padding-left: 20px;
+  padding-right: 25px;
+  margin-left: 22px;
 }
 
 .resume-name,
 .resume-date,
 .resume-department,
 .resume-explanation {
-    position: relative;
-    bottom: 20px;
+  position: relative;
+  bottom: 20px;
 }
 
 .resume-name {
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 7px;
-    font-family: 'Ubuntu', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 7px;
+  font-family: "Ubuntu", sans-serif;
 }
 
 .resume-date {
-    font-size: 17px;
-    margin-bottom: 7px;
-    font-weight: 500;
+  font-size: 17px;
+  margin-bottom: 7px;
+  font-weight: 500;
 }
 
 .resume-department {
-    font-size: 17px;
-    margin-bottom: 7px;
-    font-size: 500;
+  font-size: 17px;
+  margin-bottom: 7px;
+  font-size: 500;
 }
 
 .resume-explanation {
-    font-size: 15px;
-    font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-family: "Inter", sans-serif;
 }
 
 .ability {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: row;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
 }
 
 .ability-info {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .col-md-4 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
 }
 
 .language,
 .framework,
 .others {
-    font-size: 20px;
-    font-weight: 500;
-    text-decoration: underline;
-    font-family: 'Fira Sans', sans-serif;
-    margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: 500;
+  text-decoration: underline;
+  font-family: "Fira Sans", sans-serif;
+  margin-bottom: 10px;
 }
 
 .self {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .language-info,
 .framework-info,
 .others-info {
-    font-size: 17px;
-    font-weight: 400;
-    font-family: 'Fira Sans', sans-serif;
+  font-size: 17px;
+  font-weight: 400;
+  font-family: "Fira Sans", sans-serif;
 }
 
 .ability-circle {
-    border: 5px solid orangered;
-    background: orangered;
-    border-radius: 15px;
+  border: 5px solid orangered;
+  background: orangered;
+  border-radius: 15px;
 }
-
 
 /* PROJECTS */
 
 .projects {
-    padding: 40px 60px;
+  padding: 40px 60px;
 }
 
 .self-2 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .projects-info {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .projects-adress {
-    position: relative;
-    -webkit-transform: scale(1);
-    -ms-transform: scale(1);
-    -moz-transform: scale(1);
-    transition: all .3s ease-in;
-    -moz-transition: all .3s ease-in;
-    -webkit-transition: all .3s ease-in;
-    -ms-transition: all .2s ease-in;
-    text-decoration: none;
-    color: black;
+  position: relative;
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  -moz-transform: scale(1);
+  transition: all 0.3s ease-in;
+  -moz-transition: all 0.3s ease-in;
+  -webkit-transition: all 0.3s ease-in;
+  -ms-transition: all 0.2s ease-in;
+  text-decoration: none;
+  color: black;
 }
 
 .projects-adress:hover {
-    z-index: 4;
-    -webkit-transform: scale(1.05);
-    -ms-transform: scale(1.05);
-    -moz-transform: scale(1.05);
-    transform: scale(1.05);
-    color: black;
+  z-index: 4;
+  -webkit-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  -moz-transform: scale(1.05);
+  transform: scale(1.05);
+  color: black;
 }
 
 .f {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 590px;
-    margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 590px;
+  margin-top: 30px;
 }
 
 .f img {
-    width: 500px;
-    border-radius: 30px;
-    margin-bottom: 5px;
+  width: 500px;
+  border-radius: 30px;
+  margin-bottom: 5px;
 }
 
 .project-name {
-    word-break: break-all;
-    text-align: start;
-    font-size: 24px;
-    font-weight: 600;
+  word-break: break-all;
+  text-align: start;
+  font-size: 24px;
+  font-weight: 600;
 }
 
 .project-comment {
-    word-break: break-all;
-    float: left;
-    font-size: 21px;
-    font-weight: 400;
-    color: #8d8888;
+  word-break: break-all;
+  float: left;
+  font-size: 21px;
+  font-weight: 400;
+  color: #8d8888;
 }
 
 /* CONTACT */
 .contact {
-    padding: 40px 60px;
+  padding: 40px 60px;
 }
 
 .self-3 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .row {
-    width: 95%;
-    align-items: center;
+  width: 95%;
+  align-items: center;
 }
 
 .cimetry {
-    margin-top: 15px;
+  margin-top: 15px;
 }
 
 .cimetry-1 {
-    margin-top: 45px;
+  margin-top: 45px;
 }
 
 .d {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .contact-info {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    background-color: #8d8888;
-    margin-top: 30px;
-    padding: 25px 30px;
-
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #8d8888;
+  margin-top: 30px;
+  padding: 25px 30px;
 }
 
 .margin-1 {
-    margin-top: 30px;
+  margin-top: 30px;
 }
 
 .contact-icon {
-    font-size: 40px;
-    border: 1px solid rgb(6, 6, 6);
-    width: 40px;
-    height: 40px;
-    padding: 20px;
-    color: #ffffff;
+  font-size: 40px;
+  border: 1px solid rgb(6, 6, 6);
+  width: 40px;
+  height: 40px;
+  padding: 20px;
+  color: #ffffff;
 }
 
 .contact-info a {
-    text-decoration: none;
-    color: black;
+  text-decoration: none;
+  color: black;
 }
 
 .contact-info a {
-    color: black;
+  color: black;
 }
 
 .contact-icon-info {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .contact-icon-name {
-    font-size: 19px;
-    font-weight: 600;
-    font-family: 'Ubuntu', sans-serif;
+  font-size: 19px;
+  font-weight: 600;
+  font-family: "Ubuntu", sans-serif;
 }
 
 .contact-name {
-    font-size: 17px;
-    font-weight: 400;
+  font-size: 17px;
+  font-weight: 400;
 }
 
 iframe {
-    width: 93%;
-    height: 500px;
-    margin-top: 20px;
-    border-radius: 10px;
+  width: 93%;
+  height: 500px;
+  margin-top: 20px;
+  border-radius: 10px;
 }

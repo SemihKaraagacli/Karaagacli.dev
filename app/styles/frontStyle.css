@@ -1,15 +1,35 @@
 @import url("https://fonts.googleapis.com/css2?family=Barlow:wght@100;200;300;400;500;600;700;800;900&family=Fira+Sans:wght@100;200;300;400;500;600;700;800;900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,700&family=Ubuntu:wght@300;400;500;700&display=swap");
 
+:root {
+  --text-color: #ffffff;
+  --barlow-font: "Barlow", sans-serif;
+  --Fira-font: "Fira Sans", sans-serif;
+  --Inter-font: "Inter", sans-serif;
+  --Lora-font: "Lora", serif;
+  --Ubuntu-font: "Ubuntu", sans-serif;
+  --body-background-color: linear-gradient(to bottom, #020107 0%, #201b46 100%);
+  --navi-background-color: #5050532a;
+  --navi-text-color: #ffffff;
+  --navi-text-hover-color: #ff7403;
+  --icon-color: #ff7403;
+  --icon-hover-color: #ff7403;
+  --resume-circle-color: #ffffff;
+  --resume-line-color: #ff7403;
+  --contact-background-color: #1b1640;
+}
+html {
+  width: 100%;
+  height: 100%;
+}
 body {
   margin: 0;
   padding: 0;
   width: 100%;
-  background-color: rgba(208, 206, 206, 0.285);
-  /* font-family: 'Barlow', sans-serif; */
-  /* font-family: 'Fira Sans', sans-serif; */
-  /* font-family: 'Inter', sans-serif; */
-  /* font-family: 'Lora', serif; */
-  /* font-family: 'Ubuntu', sans-serif; */
+  background: var(--body-background-color);
+  background-attachment: fixed;
+  height: 100%;
+  color: var(--text-color);
+  font-family: var(--Inter-font);
 }
 
 .a {
@@ -17,12 +37,12 @@ body {
   flex-direction: column;
   align-items: center;
   margin-top: 15px;
-  font-family: "Lora", serif;
+  font-family: var(--Lora-font);
 }
 
 .ab {
   border-radius: 10px;
-  background-color: #c7c3cf5d;
+  background-color: var(--navi-background-color);
   width: 90%;
 }
 
@@ -30,11 +50,11 @@ body {
   padding: 15px 55px;
   font-size: 18px;
   font-weight: 600;
-  color: #ff7403;
+  color: var(--navi-text-color);
 }
 
 .abc:hover {
-  color: #e60808;
+  color: var(--navi-text-hover-color);
 }
 
 /* ABOUT */
@@ -69,7 +89,7 @@ body {
   align-items: center;
   font-size: 35px;
   font-weight: 700;
-  font-family: "Barlow", sans-serif;
+  font-family: var(--Lora-font);
 }
 
 .info {
@@ -77,7 +97,7 @@ body {
   font-size: 18px;
   font-weight: 500;
   text-align: justify;
-  font-family: "Inter", sans-serif;
+  font-family: var(--Inter-font);
   margin-top: 35px;
 }
 
@@ -87,10 +107,13 @@ body {
   border-radius: 100%;
   position: relative;
   bottom: 25px;
+  -webkit-box-shadow: 0px 0px 8px 0px rgba(255, 255, 255, 1);
+  -moz-box-shadow: 0px 0px 8px 0px rgba(255, 255, 255, 1);
+  box-shadow: 0px 0px 8px 0px rgba(255, 255, 255, 1);
 }
 
 .name {
-  font-family: "Barlow", sans-serif;
+  font-family: var(--Lora-font);
   font-size: 22px;
   font-weight: 600;
 }
@@ -99,11 +122,12 @@ body {
   display: flex;
   flex-direction: row;
   margin-top: 30px;
+  margin-bottom: 55px;
 }
 
 .sm-icon {
   width: 35px;
-  color: #ff7403;
+  color: var(--icon-color);
   margin-left: 20px;
 }
 
@@ -127,7 +151,7 @@ body {
 .ability-icon-job {
   font-size: 35px;
   display: block;
-  background-color: #8d8888;
+  background-color: var(--navi-background-color);
   border-radius: 5px;
 }
 
@@ -160,27 +184,27 @@ body {
   margin-top: 4px;
   font-size: 24px;
   font-weight: 700;
-  font-family: "Lora", serif;
+  font-family: var(--Lora-font);
 }
 
 .line {
-  border-left: 3px solid rgb(0, 0, 0);
+  border-left: 2px solid var(--resume-line-color);
   height: 40px;
   margin-left: 22px;
 }
 
 .circle {
-  border: 5px solid rgb(248, 224, 7);
-  background-color: rgb(248, 224, 7);
+  border: 5px solid var(--resume-circle-color);
+  background-color: var(--resume-circle-color);
   width: 5px;
   border-radius: 60px;
-  margin-left: 18.5px;
+  margin-left: 18px;
 }
 
 .school-info,
 .job-info {
-  font-family: "Inter", sans-serif;
-  border-left: 3px solid rgb(0, 0, 0);
+  font-family: var(--Inter-font);
+  border-left: 2px solid var(--resume-line-color);
   border-radius: 1.5px;
   padding-left: 20px;
   padding-right: 25px;
@@ -199,7 +223,7 @@ body {
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 7px;
-  font-family: "Ubuntu", sans-serif;
+  font-family: var(--Inter-font);
 }
 
 .resume-date {
@@ -216,7 +240,7 @@ body {
 
 .resume-explanation {
   font-size: 15px;
-  font-family: "Inter", sans-serif;
+  font-family: var(--Inter-font);
 }
 
 .ability {
@@ -245,7 +269,7 @@ body {
   font-size: 20px;
   font-weight: 500;
   text-decoration: underline;
-  font-family: "Fira Sans", sans-serif;
+  font-family: var(--Inter-font);
   margin-bottom: 10px;
 }
 
@@ -260,12 +284,12 @@ body {
 .others-info {
   font-size: 17px;
   font-weight: 400;
-  font-family: "Fira Sans", sans-serif;
+  font-family: var(--Inter-font);
 }
 
 .ability-circle {
-  border: 5px solid orangered;
-  background: orangered;
+  border: 5px solid var(--resume-line-color);
+  background: var(--resume-line-color);
   border-radius: 15px;
 }
 
@@ -293,12 +317,12 @@ body {
   -webkit-transform: scale(1);
   -ms-transform: scale(1);
   -moz-transform: scale(1);
-  transition: all 0.3s ease-in;
+  transition: all 0.4s ease-in;
   -moz-transition: all 0.3s ease-in;
-  -webkit-transition: all 0.3s ease-in;
+  -webkit-transition: all 0.4s ease-in;
   -ms-transition: all 0.2s ease-in;
   text-decoration: none;
-  color: black;
+  color: var(--text-color);
 }
 
 .projects-adress:hover {
@@ -307,7 +331,7 @@ body {
   -ms-transform: scale(1.05);
   -moz-transform: scale(1.05);
   transform: scale(1.05);
-  color: black;
+  color: var(--text-color);
 }
 
 .f {
@@ -319,7 +343,7 @@ body {
 }
 
 .f img {
-  width: 500px;
+  width: 420px;
   border-radius: 30px;
   margin-bottom: 5px;
 }
@@ -373,7 +397,7 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: #8d8888;
+  background-color: var(--contact-background-color);
   margin-top: 30px;
   padding: 25px 30px;
 }
@@ -384,20 +408,20 @@ body {
 
 .contact-icon {
   font-size: 40px;
-  border: 1px solid rgb(6, 6, 6);
+  border: 1px solid #8d8888;
   width: 40px;
   height: 40px;
   padding: 20px;
-  color: #ffffff;
+  color: var(--text-color);
 }
 
 .contact-info a {
   text-decoration: none;
-  color: black;
+  color: var(--text-color);
 }
 
 .contact-info a {
-  color: black;
+  color: var(--text-color);
 }
 
 .contact-icon-info {
@@ -408,7 +432,7 @@ body {
 .contact-icon-name {
   font-size: 19px;
   font-weight: 600;
-  font-family: "Ubuntu", sans-serif;
+  font-family: var(--Inter-font);
 }
 
 .contact-name {

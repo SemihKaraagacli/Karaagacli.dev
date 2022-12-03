@@ -9,6 +9,7 @@ import {
   frameworksFindPost,
 } from "~/models/post.server";
 import type { frameworks, resumeJob } from "@prisma/client";
+import { authenticator } from "~/models/auth.server";
 
 export function links() {
   return [{ rel: "stylesheet", href: admin }];
@@ -21,7 +22,9 @@ export const meta: MetaFunction = () => ({
 
 type loaderData = { framework: frameworks };
 
-export const loader: LoaderFunction = async ({ params }) => {
+export const loader: LoaderFunction = async ({ params, request }) => {
+  await authenticator.isAuthenticated(request, { failureRedirect: "/admin/" });
+
   const id = params.frameworkDeleteId;
   const post = await frameworksFindPost(parseInt(id!));
   if (!post) {

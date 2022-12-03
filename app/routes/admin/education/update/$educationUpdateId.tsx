@@ -21,6 +21,7 @@ import { educationFindPost, educationUpdatePost } from "~/models/post.server";
 import type { resumeSchool } from "@prisma/client";
 import { Form } from "@remix-run/react";
 import background from "public/images/background.jpg";
+import { authenticator } from "~/models/auth.server";
 export function links() {
   return [{ rel: "stylesheet", href: admin }];
 }
@@ -32,7 +33,9 @@ export const meta: MetaFunction = () => ({
 
 type loaderData = { schools: resumeSchool };
 
-export const loader: LoaderFunction = async ({ params }) => {
+export const loader: LoaderFunction = async ({ params, request }) => {
+  await authenticator.isAuthenticated(request, { failureRedirect: "/admin/" });
+
   const id = params.educationUpdateId;
   const post = await educationFindPost(parseInt(id!));
   if (!post) {

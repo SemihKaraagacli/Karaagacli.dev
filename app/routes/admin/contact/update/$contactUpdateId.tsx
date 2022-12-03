@@ -24,6 +24,7 @@ export const meta: MetaFunction = () => ({
 type loaderData = { contact: contact };
 
 export const loader: LoaderFunction = async ({ params }) => {
+  await authenticator.isAuthenticated(request, { failureRedirect: "/admin/" });
   const id = params.contactUpdateId;
   const post = await contactFindPost(parseInt(id!));
   if (!post) {

@@ -3,10 +3,11 @@ import { json, LoaderFunction, MetaFunction } from "@remix-run/node";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import admin from "~/styles/admin.css";
-import { useLoaderData } from "@remix-run/react";
+import { useLoaderData, useSubmit } from "@remix-run/react";
 import type { main } from "@prisma/client";
 import { db } from "~/utils/db.server";
 import background from "public/images/background.jpg";
+import { authenticator } from "~/models/auth.server";
 
 export function links() {
   return [{ rel: "stylesheet", href: admin }];
@@ -19,15 +20,19 @@ export const meta: MetaFunction = () => ({
 
 type loaderData = { mains: Array<main> };
 
-export const loader: LoaderFunction = async () => {
+export const loader: LoaderFunction = async ({ request }) => {
+  await authenticator.isAuthenticated(request, { failureRedirect: "/admin/" });
   const data: loaderData = {
     mains: await db.main.findMany(),
   };
   return json(data);
 };
-
 export default function Index() {
   const data = useLoaderData<loaderData>();
+  const submit = useSubmit();
+  const onLogout = async () => {
+    submit(null, { method: "post", action: "/api/logout" });
+  };
   return (
     <>
       <img className="home-img" src={background} alt="" />
@@ -82,8 +87,8 @@ export default function Index() {
                 </Nav.Link>
               </Nav.Item>
             </div>
-            <Nav.Item>
-              <Nav.Link className="exit" href="/">
+            <Nav.Item onClick={onLogout}>
+              <Nav.Link className="exit">
                 <FontAwesomeIcon icon={faRightFromBracket} />
               </Nav.Link>
             </Nav.Item>

@@ -1,5 +1,6 @@
 import {
   ActionFunction,
+  LoaderFunction,
   MetaFunction,
   unstable_composeUploadHandlers,
   unstable_createFileUploadHandler,
@@ -16,6 +17,7 @@ import admin from "~/styles/admin.css";
 import { redirect } from "@remix-run/node";
 import { aboutCreatePost, projectCreatePost } from "~/models/post.server";
 import background from "public/images/background.jpg";
+import { authenticator } from "~/models/auth.server";
 
 export function links() {
   return [{ rel: "stylesheet", href: admin }];
@@ -25,6 +27,10 @@ export const meta: MetaFunction = () => ({
   title: "Home-Create",
   viewport: "width=device-width,initial-scale=1",
 });
+
+export const loader: LoaderFunction = async ({ request }) => {
+  await authenticator.isAuthenticated(request, { failureRedirect: "/admin/" });
+};
 
 export const action: ActionFunction = async ({ request }) => {
   const uploadHandler = unstable_composeUploadHandlers(

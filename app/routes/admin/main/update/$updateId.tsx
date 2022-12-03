@@ -12,6 +12,7 @@ import { findPost, updatePost } from "~/models/post.server";
 import type { main } from "@prisma/client";
 import { Form } from "@remix-run/react";
 import background from "public/images/background.jpg";
+import { authenticator } from "~/models/auth.server";
 
 export function links() {
   return [{ rel: "stylesheet", href: admin }];
@@ -24,7 +25,9 @@ export const meta: MetaFunction = () => ({
 
 type loaderData = { main: main };
 
-export const loader: LoaderFunction = async ({ params }) => {
+export const loader: LoaderFunction = async ({ params, request }) => {
+  await authenticator.isAuthenticated(request, { failureRedirect: "/admin/" });
+
   const id = params.updateId;
   const post = await findPost(parseInt(id!));
   if (!post) {

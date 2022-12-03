@@ -4,6 +4,7 @@ import { useLoaderData } from "@remix-run/react";
 import type { LoaderFunction } from "@remix-run/node";
 import { projectDeletePost, projectFindPost } from "~/models/post.server";
 import type { projects } from "@prisma/client";
+import { authenticator } from "~/models/auth.server";
 
 export function links() {
   return [{ rel: "stylesheet", href: admin }];
@@ -16,7 +17,9 @@ export const meta: MetaFunction = () => ({
 
 type loaderData = { projects: projects };
 
-export const loader: LoaderFunction = async ({ params }) => {
+export const loader: LoaderFunction = async ({ params, request }) => {
+  await authenticator.isAuthenticated(request, { failureRedirect: "/admin/" });
+
   const id = params.projectDeleteId;
   const post = await projectFindPost(parseInt(id!));
   if (!post) {

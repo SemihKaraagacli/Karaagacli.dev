@@ -6,12 +6,13 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Nav } from "react-bootstrap";
 import admin from "~/styles/admin.css";
-import { useLoaderData} from "@remix-run/react";
+import { useLoaderData } from "@remix-run/react";
 import type { LoaderFunction } from "@remix-run/node";
 import { deletePost, findPost, updatePost } from "~/models/post.server";
 import type { main } from "@prisma/client";
 import { Form } from "@remix-run/react";
 import { parseArgs } from "util";
+import { authenticator } from "~/models/auth.server";
 
 export function links() {
   return [{ rel: "stylesheet", href: admin }];
@@ -24,7 +25,9 @@ export const meta: MetaFunction = () => ({
 
 type loaderData = { main: main };
 
-export const loader: LoaderFunction = async ({ params }) => {
+export const loader: LoaderFunction = async ({ params, request }) => {
+  await authenticator.isAuthenticated(request, { failureRedirect: "/admin/" });
+
   const id = params.deleteId;
   const post = await findPost(parseInt(id!));
   if (!post) {
@@ -33,8 +36,8 @@ export const loader: LoaderFunction = async ({ params }) => {
   const data: loaderData = {
     main: post,
   };
-  deletePost(data.main.id)
-  return redirect("/admin/main") ;
+  deletePost(data.main.id);
+  return redirect("/admin/main");
 };
 
 export default function Delete() {

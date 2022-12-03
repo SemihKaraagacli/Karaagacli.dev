@@ -7,6 +7,7 @@ import { useLoaderData } from "@remix-run/react";
 import type { resumeJob } from "@prisma/client";
 import { db } from "~/utils/db.server";
 import background from "public/images/background.jpg";
+import { authenticator } from "~/models/auth.server";
 export function links() {
   return [{ rel: "stylesheet", href: admin }];
 }
@@ -18,7 +19,8 @@ export const meta: MetaFunction = () => ({
 
 type loaderData = { job: Array<resumeJob> };
 
-export const loader: LoaderFunction = async () => {
+export const loader: LoaderFunction = async ({ request }) => {
+  await authenticator.isAuthenticated(request, { failureRedirect: "/admin/" });
   const data: loaderData = {
     job: await db.resumeJob.findMany(),
   };

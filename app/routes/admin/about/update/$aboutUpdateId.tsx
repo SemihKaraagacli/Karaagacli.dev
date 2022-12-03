@@ -21,6 +21,8 @@ import { aboutFindPost, aboutUpdatePost } from "~/models/post.server";
 import type { about } from "@prisma/client";
 import { Form } from "@remix-run/react";
 import background from "public/images/background.jpg";
+import { authenticator } from "~/models/auth.server";
+import { request } from "http";
 export function links() {
   return [{ rel: "stylesheet", href: admin }];
 }
@@ -32,7 +34,8 @@ export const meta: MetaFunction = () => ({
 
 type loaderData = { about: about };
 
-export const loader: LoaderFunction = async ({ params }) => {
+export const loader: LoaderFunction = async ({ params, request }) => {
+  await authenticator.isAuthenticated(request, { failureRedirect: "/admin/" });
   const id = params.aboutUpdateId;
   const post = await aboutFindPost(parseInt(id!));
   if (!post) {

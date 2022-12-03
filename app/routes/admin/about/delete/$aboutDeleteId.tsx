@@ -4,6 +4,7 @@ import { useLoaderData } from "@remix-run/react";
 import type { LoaderFunction } from "@remix-run/node";
 import { aboutDeletePost, aboutFindPost } from "~/models/post.server";
 import type { about } from "@prisma/client";
+import { authenticator } from "~/models/auth.server";
 
 export function links() {
   return [{ rel: "stylesheet", href: admin }];
@@ -16,7 +17,8 @@ export const meta: MetaFunction = () => ({
 
 type loaderData = { about: about };
 
-export const loader: LoaderFunction = async ({ params }) => {
+export const loader: LoaderFunction = async ({ params, request }) => {
+  await authenticator.isAuthenticated(request, { failureRedirect: "/admin/" });
   const id = params.aboutDeleteId;
   const post = await aboutFindPost(parseInt(id!));
   if (!post) {

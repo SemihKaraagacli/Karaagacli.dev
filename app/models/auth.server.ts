@@ -11,7 +11,6 @@ type adminWithoutPassword = Omit<admin, "password">;
 export let authenticator = new Authenticator<adminWithoutPassword | null>(sessionStorage);
 
 
-
 authenticator.use(
   new FormStrategy(async ({ form, context }) => {
    
@@ -24,7 +23,8 @@ authenticator.use(
 
     invariant(typeof password === "string", "password must be a string");
     invariant(password.length > 0, "password must not be empty");
-    console.log(">>>>>", password, username);
+
+    
 
     let user = await verifyLogin(username, password);
     
@@ -32,6 +32,7 @@ authenticator.use(
   }),
   "AdminPanel"
 );
+
 
 export async function verifyLogin(
     username: admin["firsName"],

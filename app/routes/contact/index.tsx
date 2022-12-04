@@ -11,7 +11,6 @@ import { contact } from "@prisma/client";
 import { db } from "~/utils/db.server";
 import { useLoaderData } from "@remix-run/react";
 import contact from "../admin/contact";
-import contact from "../admin/contact";
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
@@ -36,27 +35,27 @@ export default function Index() {
         <Nav className="justify-content-center ab">
           <Nav.Item>
             <Nav.Link className="abc" href="/">
-              MAİN
+              ANASAYFA
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link className="abc" href="/about">
-              ABOUT
+              HAKKIMDA
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link className="abc" href="/resume">
-              RESUME
+              ÖZGEÇMİŞ
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link className="abc" href="/projects">
-              PROJECTS
+              PROJELER
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link className="abc" href="/contact">
-              CONTACT
+              İLETİŞİM
             </Nav.Link>
           </Nav.Item>
         </Nav>
@@ -72,15 +71,27 @@ export default function Index() {
               <Form>
                 <Row className="cimetry-1">
                   <Col>
-                    <Form.Control placeholder="İsim" />
+                    <Form.Control
+                      style={{ backgroundColor: "#b3b3b3" }}
+                      placeholder="İsim"
+                      disabled
+                    />
                   </Col>
                   <Col>
-                    <Form.Control placeholder="Soyisim" />
+                    <Form.Control
+                      style={{ backgroundColor: "#b3b3b3" }}
+                      placeholder="Soyisim"
+                      disabled
+                    />
                   </Col>
                 </Row>
                 <Row className="cimetry">
                   <Col>
-                    <Form.Control placeholder="your@example.com" />
+                    <Form.Control
+                      style={{ backgroundColor: "#b3b3b3" }}
+                      placeholder="your@example.com"
+                      disabled
+                    />
                   </Col>
                 </Row>
                 <Row className="cimetry">
@@ -88,13 +99,14 @@ export default function Index() {
                     <Form.Control
                       as="textarea"
                       placeholder="Düşünceleriniz için teşekkürler."
-                      style={{ height: "200px " }}
+                      style={{ height: "200px ", backgroundColor: "#b3b3b3" }}
+                      disabled
                     />
                   </Col>
                 </Row>
                 <Row className="cimetry">
                   <Col className="d">
-                    <Button variant="primary" type="submit">
+                    <Button variant="primary" type="submit" disabled>
                       Gönder
                     </Button>
                   </Col>

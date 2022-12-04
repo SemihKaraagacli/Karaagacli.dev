@@ -50,27 +50,27 @@ export default function Index() {
         <Nav className="justify-content-center ab">
           <Nav.Item>
             <Nav.Link className="abc" href="/">
-              MAİN
+              ANASAYFA
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link className="abc" href="/about">
-              ABOUT
+              HAKKIMDA
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link className="abc" href="/resume">
-              RESUME
+              ÖZGEÇMİŞ
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link className="abc" href="/projects">
-              PROJECTS
+              PROJELER
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link className="abc" href="/contact">
-              CONTACT
+              İLETİŞİM
             </Nav.Link>
           </Nav.Item>
         </Nav>
@@ -160,8 +160,9 @@ export default function Index() {
               <div className="ability-title-name">BECERİLER</div>
             </div>
           </div>
+
           <div className="ability-info">
-            <div className="col-md-4">
+            <div className="flex flex-col ">
               <div className="language">Languages</div>
               {data.language
                 .sort((a, b) => a.id - b.id)
@@ -177,7 +178,7 @@ export default function Index() {
                 ))
                 .reverse()}
             </div>
-            <div className="col-md-4">
+            <div className="flex flex-col">
               <div className="framework">Frameworks</div>
               {data.framework
                 .sort((a, b) => a.id - b.id)
@@ -193,7 +194,7 @@ export default function Index() {
                 ))
                 .reverse()}
             </div>
-            <div className="col-md-4">
+            <div className="flex flex-col">
               <div className="others">Others</div>
               {data.other
                 .sort((a, b) => a.id - b.id)

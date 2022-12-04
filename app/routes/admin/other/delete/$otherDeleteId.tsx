@@ -29,7 +29,7 @@ export const loader: LoaderFunction = async ({ params, request }) => {
     other: post,
   };
   othersDeletePost(data.other.id);
-  return redirect("/admin/framework");
+  return redirect("/admin/other");
 };
 
 export default function Delete() {

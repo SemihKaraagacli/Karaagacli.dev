@@ -29,7 +29,9 @@ export const meta: MetaFunction = () => ({
 });
 
 export const loader: LoaderFunction = async ({ request }) => {
-  await authenticator.isAuthenticated(request, { failureRedirect: "/admin/" });
+  return await authenticator.isAuthenticated(request, {
+    failureRedirect: "/admin/",
+  });
 };
 
 export const action: ActionFunction = async ({ request }) => {

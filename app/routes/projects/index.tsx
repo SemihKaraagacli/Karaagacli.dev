@@ -32,27 +32,27 @@ export default function Index() {
         <Nav className="justify-content-center ab">
           <Nav.Item>
             <Nav.Link className="abc" href="/">
-              MAİN
+              ANASAYFA
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link className="abc" href="/about">
-              ABOUT
+              HAKKIMDA
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link className="abc" href="/resume">
-              RESUME
+              ÖZGEÇMİŞ
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link className="abc" href="/projects">
-              PROJECTS
+              PROJELER
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link className="abc" href="/contact">
-              CONTACT
+              İLETİŞİM
             </Nav.Link>
           </Nav.Item>
         </Nav>

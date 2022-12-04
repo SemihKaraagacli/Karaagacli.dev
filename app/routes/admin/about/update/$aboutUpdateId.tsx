@@ -22,7 +22,7 @@ import type { about } from "@prisma/client";
 import { Form } from "@remix-run/react";
 import background from "public/images/background.jpg";
 import { authenticator } from "~/models/auth.server";
-import { request } from "http";
+import bcrypt from "bcryptjs";
 export function links() {
   return [{ rel: "stylesheet", href: admin }];
 }
@@ -80,6 +80,9 @@ export const action: ActionFunction = async ({ request, params }) => {
   if (formData.get("profilImageName").name != "") {
     deger.profilImageName = (formData.get("profilImageName") as any).name;
   }
+
+  // const hashlenmisSifre = bcrypt.hash("DertterS", 10);
+  // console.log(">>>>>>><<<<<<<", hashlenmisSifre);
 
   await aboutUpdatePost(parseInt(id!), deger);
   return redirect(`/admin/about`);

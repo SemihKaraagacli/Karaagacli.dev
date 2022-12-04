@@ -8,6 +8,7 @@ import type { about } from "@prisma/client";
 import { db } from "~/utils/db.server";
 import background from "public/images/background.jpg";
 import { authenticator } from "~/models/auth.server";
+import bcrypt from "bcryptjs";
 export function links() {
   return [{ rel: "stylesheet", href: admin }];
 }

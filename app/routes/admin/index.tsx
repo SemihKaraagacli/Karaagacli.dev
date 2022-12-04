@@ -30,8 +30,6 @@ export const action: ActionFunction = async ({ request }) => {
     successRedirect: "/admin/main/",
     failureRedirect: "/admin/",
   });
-  console.log(">>>>>>", a);
-  return a;
 };
 
 export default function Index() {

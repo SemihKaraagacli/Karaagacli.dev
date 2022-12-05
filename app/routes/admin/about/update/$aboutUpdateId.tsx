@@ -81,9 +81,6 @@ export const action: ActionFunction = async ({ request, params }) => {
     deger.profilImageName = (formData.get("profilImageName") as any).name;
   }
 
-  // const hashlenmisSifre = bcrypt.hash("DertterS", 10);
-  // console.log(">>>>>>><<<<<<<", hashlenmisSifre);
-
   await aboutUpdatePost(parseInt(id!), deger);
   return redirect(`/admin/about`);
 };

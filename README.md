@@ -1,53 +1,32 @@
-# Welcome to Remix!
+# Karaağaçlı.dev
+- Bu proje kendime hazırladığım kişisel web sitesidir.
+- Sistemsel olarak user ve admin olmak üzere iki tane kullanıcı arayüzü bulunuyor.
+- Bu proje tasarımını C# dilinde .NET 3.1 ve .NET 6.0 frameworklerini kullanarak da yaptım.İkiside repomda bulunuyor.
 
-- [Remix Docs](https://remix.run/docs)
+### Kullanılan Teknolojiler
 
-## Development
+- [**Remix.run**](https://remix.run/)
+    - (TypeScript, React, Nodejs)
+- [**Remix-Auth**](https://www.npmjs.com/package/remix-auth)
+- [**Tailwindcss**](https://tailwindcss.com/)
+- [**React Bootstrap**](https://react-bootstrap.github.io/)
+- [**Fontawesome**](https://fontawesome.com/)
+- [**Docker**](https://www.docker.com/)
 
-From your terminal:
+### Remix.run
 
-```sh
-npm run dev
+Bu projeyi dağıtmak için proje terminalinizde bu kodu çalıştırınız.
+
+```bash
+  npm run dev
 ```
 
-This starts your app in development mode, rebuilding assets on file changes.
+### Docker
 
-## Deployment
+Docker'i çalıştırmak için proje terminalinizde bu kodu çalıştırınız.
 
-First, build your app for production:
-
-```sh
-npm run build
-```
-
-Then run the app in production mode:
-
-```sh
-npm start
-```
-
-Now you'll need to pick a host to deploy it to.
-
-### DIY
-
-If you're familiar with deploying node applications, the built-in Remix app server is production-ready.
-
-Make sure to deploy the output of `remix build`
-
-- `build/`
-- `public/build/`
-
-### Using a Template
-
-When you ran `npx create-remix@latest` there were a few choices for hosting. You can run that again to create a new project, then copy over your `app/` folder to the new project that's pre-configured for your target server.
-
-```sh
-cd ..
-# create a new project, and pick a pre-configured host
-npx create-remix@latest
-cd my-new-remix-app
-# remove the new project's app (not the old one!)
-rm -rf app
-# copy your app over
-cp -R ../my-old-remix-app/app app
+```bash
+  docker-compose up 
+        yada
+  docker-compose up -d
 ```
